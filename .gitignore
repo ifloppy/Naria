@@ -1,0 +1,7 @@
+*.exe
+*.dbg
+*.session
+*.ini
+*.res
+/lib
+/backup

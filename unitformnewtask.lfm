@@ -1,0 +1,54 @@
+object FormNewTask: TFormNewTask
+  Left = 512
+  Height = 239
+  Top = 233
+  Width = 392
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'New Download Task'
+  ClientHeight = 239
+  ClientWidth = 392
+  LCLVersion = '3.99.0.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 200
+    Top = 0
+    Width = 392
+    ActivePage = TabSheet1
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'URL'
+      ClientHeight = 170
+      ClientWidth = 384
+      object edtDownloadURL: TLabeledEdit
+        Left = 8
+        Height = 25
+        Top = 32
+        Width = 368
+        EditLabel.Height = 17
+        EditLabel.Width = 368
+        EditLabel.Caption = 'Download URL'
+        TabOrder = 0
+      end
+    end
+  end
+  object btnStart: TButton
+    Left = 312
+    Height = 25
+    Top = 208
+    Width = 75
+    Caption = 'Start'
+    TabOrder = 1
+    OnClick = btnStartClick
+  end
+  object btnCancel: TButton
+    Left = 232
+    Height = 25
+    Top = 208
+    Width = 75
+    Caption = 'Cancel'
+    TabOrder = 2
+    OnClick = btnCancelClick
+  end
+end

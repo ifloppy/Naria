@@ -1,0 +1,16 @@
+{"version":1,"strings":[
+{"hash":72271347,"name":"tformsettings.caption","sourcebytes":[65,114,105,97,50,32,83,101,116,116,105,110,103,115],"value":"Aria2 Settings"},
+{"hash":1339,"name":"tformsettings.btnok.caption","sourcebytes":[79,75],"value":"OK"},
+{"hash":77089212,"name":"tformsettings.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":21859,"name":"tformsettings.tabsheet1.caption","sourcebytes":[80,82,67],"value":"PRC"},
+{"hash":74788713,"name":"tformsettings.label2.caption","sourcebytes":[80,82,67,32,115,101,99,114,101,116,40,79,112,116,105,111,110,97,108,41],"value":"PRC secret(Optional)"},
+{"hash":259279188,"name":"tformsettings.label1.caption","sourcebytes":[80,82,67,32,108,105,115,116,101,110,32,112,111,114,116],"value":"PRC listen port"},
+{"hash":203492675,"name":"tformsettings.ckblistenall.caption","sourcebytes":[76,105,115,116,101,110,32,82,80,67,32,114,101,113,117,101,115,116,115,32,111,110,32,97,108,108,32,110,101,116,119,111,114,107,32,105,110,116,101,114,102,97,99,101,115],"value":"Listen RPC requests on all network interfaces"},
+{"hash":257415588,"name":"tformsettings.edtrpcpassword.texthint","sourcebytes":[70,111,114,32,115,101,99,117,114,101,32,121,111,117,114,32,97,105,114,97,50,44,32,119,101,32,115,117,103,103,101,115,116,32,121,111,117,32,117,115,101,32,97,32,115,101,99,114,101,116],"value":"For secure your aira2, we suggest you use a secret"},
+{"hash":115683780,"name":"tformsettings.tabsheet2.caption","sourcebytes":[68,111,119,110,108,111,97,100],"value":"Download"},
+{"hash":130850920,"name":"tformsettings.edtdownloadpath.editlabel.caption","sourcebytes":[68,101,102,97,117,108,116,32,112,97,116,104],"value":"Default path"},
+{"hash":83483460,"name":"tformsettings.edtdownloadua.editlabel.caption","sourcebytes":[68,101,102,97,117,108,116,32,85,115,101,114,45,97,103,101,109,116],"value":"Default User-agemt"},
+{"hash":184411193,"name":"tformsettings.edtdownloadua.texthint","sourcebytes":[34,97,114,105,97,50,47,36,86,69,82,83,73,79,78,34,32,105,102,32,116,104,101,114,101,32,105,115,32,101,109,112,116,121],"value":"\"aria2/$VERSION\" if there is empty"},
+{"hash":115952286,"name":"tformsettings.btndownloadpathbrowse.caption","sourcebytes":[66,114,111,119,115,101,46,46,46],"value":"Browse..."},
+{"hash":126422979,"name":"tformsettings.label3.caption","sourcebytes":[85,65,32,112,114,101,115,101,116,115],"value":"UA presets"}
+]}

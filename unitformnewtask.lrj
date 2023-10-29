@@ -1,0 +1,7 @@
+{"version":1,"strings":[
+{"hash":207565963,"name":"tformnewtask.caption","sourcebytes":[78,101,119,32,68,111,119,110,108,111,97,100,32,84,97,115,107],"value":"New Download Task"},
+{"hash":23148,"name":"tformnewtask.tabsheet1.caption","sourcebytes":[85,82,76],"value":"URL"},
+{"hash":29409116,"name":"tformnewtask.edtdownloadurl.editlabel.caption","sourcebytes":[68,111,119,110,108,111,97,100,32,85,82,76],"value":"Download URL"},
+{"hash":5941396,"name":"tformnewtask.btnstart.caption","sourcebytes":[83,116,97,114,116],"value":"Start"},
+{"hash":77089212,"name":"tformnewtask.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+]}
