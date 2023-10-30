@@ -50,7 +50,7 @@ begin
   req.Method:='aria2.addUri';
   req.Args.Add(AriaParamToken);
   req.Args.Add(GetJSONArray([edtDownloadURL.Text]));
-  ShowMessage(FormMain.client.call(req));
+  FormMain.client.call(req);
   req.Free;
   Close;
 end;

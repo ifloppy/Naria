@@ -1,7 +1,7 @@
 object FormNewTask: TFormNewTask
-  Left = 512
+  Left = 448
   Height = 239
-  Top = 233
+  Top = 213
   Width = 392
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog

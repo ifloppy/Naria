@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 540
+  Left = 503
   Height = 347
-  Top = 252
+  Top = 262
   Width = 616
   Caption = 'FormMain'
   ClientHeight = 347
@@ -126,6 +126,8 @@ object FormMain: TFormMain
     Top = 12
     Width = 172
     Caption = 'Refresh download task list'
+    Checked = True
+    State = cbChecked
     TabOrder = 6
     OnChange = ckbRefreshTaskListChange
   end
@@ -141,8 +143,6 @@ object FormMain: TFormMain
     Top = 104
   end
   object TimerRefreshTaskList: TTimer
-    Enabled = False
-    Interval = 2000
     OnTimer = TimerRefreshTaskListTimer
     Left = 24
     Top = 160

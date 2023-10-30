@@ -81,6 +81,7 @@ end;
 procedure TFormMain.ckbRefreshTaskListChange(Sender: TObject);
 begin
   TimerRefreshTaskList.Enabled := ckbRefreshTaskList.Checked;
+
 end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -102,44 +103,47 @@ end;
 
 procedure TFormMain.mniTaskCopyURLClick(Sender: TObject);
 begin
-  Clipboard.AsText:=ListView1.Selected.SubItems.Strings[0];
+  Clipboard.AsText := ListView1.Selected.SubItems.Strings[0];
 end;
 
 procedure TFormMain.mniTaskDeleteClick(Sender: TObject);
 begin
-  client.Call('aria2.remove', [AriaParamToken, ListView1.Items[ListView1.ItemIndex].Caption], 0);
+  client.Call('aria2.remove', [AriaParamToken,
+    ListView1.Items[ListView1.ItemIndex].Caption], 0);
 end;
 
 procedure TFormMain.mniTaskPauseClick(Sender: TObject);
 begin
-  client.Call('aria2.pause', [AriaParamToken, ListView1.Items[ListView1.ItemIndex].Caption], 0);
+  client.Call('aria2.pause', [AriaParamToken,
+    ListView1.Items[ListView1.ItemIndex].Caption], 0);
 end;
 
 procedure TFormMain.mniTaskResumeClick(Sender: TObject);
 begin
-  client.Call('aria2.unpause', [AriaParamToken, ListView1.Items[ListView1.ItemIndex].Caption], 0);
+  client.Call('aria2.unpause', [AriaParamToken,
+    ListView1.Items[ListView1.ItemIndex].Caption], 0);
 end;
 
 procedure TFormMain.PopupMenuDownloadTaskClose(Sender: TObject);
 begin
-  TimerRefreshTaskList.Enabled:=ckbRefreshTaskList.Checked;
+  TimerRefreshTaskList.Enabled := ckbRefreshTaskList.Checked;
 end;
 
 procedure TFormMain.PopupMenuDownloadTaskPopup(Sender: TObject);
 var
   selectedIndex: integer;
 begin
-  mniTaskResume.Enabled:=false;
-  mniTaskPause.Enabled:=false;
-  mniTaskDelete.Enabled:=false;
-  mniTaskCopyURL.Enabled:=false;
+  mniTaskResume.Enabled := False;
+  mniTaskPause.Enabled := False;
+  mniTaskDelete.Enabled := False;
+  mniTaskCopyURL.Enabled := False;
 
 
-  selectedIndex:=ListView1.ItemIndex;
+  selectedIndex := ListView1.ItemIndex;
   if selectedIndex >= 0 then
   begin
-    mniTaskCopyURL.Enabled:=true;
-    TimerRefreshTaskList.Enabled:=false;
+    mniTaskCopyURL.Enabled := True;
+    TimerRefreshTaskList.Enabled := False;
 
     //ShowMessage(ListView1.Items[selectedIndex].SubItems.Text);
 
@@ -188,8 +192,10 @@ begin
   Result := resp.Objects['result'].Clone as TJSONObject;
   resp.Free;
 
-  sb.Panels.Items[0].Text := '↓ ' + Utf8ToAnsi(Result.Strings['downloadSpeed']) + 'byte/s';
-  sb.Panels.Items[1].Text := '↑ ' + Utf8ToAnsi(Result.Strings['uploadSpeed']) + 'byte/s';
+  sb.Panels.Items[0].Text := '↓ ' + Utf8ToAnsi(Result.Strings['downloadSpeed']) +
+    'byte/s';
+  sb.Panels.Items[1].Text := '↑ ' + Utf8ToAnsi(Result.Strings['uploadSpeed']) +
+    'byte/s';
   sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
 
   Result.Free;
@@ -198,9 +204,12 @@ end;
 procedure TFormMain.TimerRefreshTaskListTimer(Sender: TObject);
 var
   r: string;
-  SingleObject: TJSONObject;
-  i: integer;
+  SingleJSONObject: TJSONObject;
+  SingleListItemObject: TListItem;
+  i, ii, totalTaskNum, nextProcessArrayIndex: integer;
   respJSON: TJSONObject;
+  VirtualListView: array of array[0..7] of string;
+  lengthTotal, lengthCompleted: Int64;
 begin
   r := client.Call('aria2.tellActive', [AriaParamToken], 1);
   ActiveTaskStatusList.Free;
@@ -208,59 +217,11 @@ begin
   ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
 
-  ListView1.Clear;
-
-  if ActiveTaskStatusList.Count > 0 then for i := 0 to ActiveTaskStatusList.Count - 1 do
-    begin
-      SingleObject := ActiveTaskStatusList.Objects[i];
-      with ListView1.Items.Add do
-      begin
-        Caption := SingleObject.Strings['gid'];
-        SubItems.Add(SingleObject.Arrays['files'].Objects[0].Arrays[
-          'uris'].Objects[0].Strings['uri']);
-        SubItems.Add(SingleObject.Strings['completedLength']);
-        SubItems.Add(SingleObject.Strings['totalLength']);
-        if SingleObject.Integers['totalLength'] = 0 then
-          SubItems.Add('N/A')
-        else
-          SubItems.Add(FloatToStrF(SingleObject.Integers['completedLength'] /
-            SingleObject.Integers['totalLength'] * 100, ffGeneral, 5, 2) + '%');
-        SubItems.Add(SingleObject.Strings['uploadLength']);
-        SubItems.Add(SingleObject.Strings['downloadSpeed']);
-        SubItems.Add(DownloadActive);
-      end;
-    end;
-
-
-
   r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
   WaitingTaskStatusList.Free;
   respJSON := GetJSON(r) as TJSONObject;
   WaitingTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
-
-  if WaitingTaskStatusList.Count > 0 then for i := 0 to WaitingTaskStatusList.Count - 1 do
-    begin
-      SingleObject := WaitingTaskStatusList.Objects[i];
-      with ListView1.Items.Add do
-      begin
-        Caption := SingleObject.Strings['gid'];
-        SubItems.Add(SingleObject.Arrays['files'].Objects[0].Arrays[
-          'uris'].Objects[0].Strings['uri']);
-        SubItems.Add(SingleObject.Strings['completedLength']);
-        SubItems.Add(SingleObject.Strings['totalLength']);
-        if SingleObject.Integers['totalLength'] = 0 then
-          SubItems.Add('N/A')
-        else
-          SubItems.Add(FloatToStrF(SingleObject.Integers['completedLength'] /
-            SingleObject.Integers['totalLength'] * 100, ffGeneral, 5, 2) + '%');
-        SubItems.Add(SingleObject.Strings['uploadLength']);
-        SubItems.Add(SingleObject.Strings['downloadSpeed']);
-        SubItems.Add(DownloadWaiting);
-      end;
-    end;
-
-
 
   r := client.Call('aria2.tellStopped', [AriaParamToken, 0, 10], 1);
   StoppedTaskStatusList.Free;
@@ -268,26 +229,153 @@ begin
   StoppedTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
 
-  if StoppedTaskStatusList.Count > 0 then for i := 0 to StoppedTaskStatusList.Count - 1 do
+  totalTaskNum := ActiveTaskStatusList.Count + WaitingTaskStatusList.Count +
+    StoppedTaskStatusList.Count;
+  SetLength(VirtualListView, totalTaskNum);
+  nextProcessArrayIndex := 0;
+
+
+  //Get task list
+
+  if ActiveTaskStatusList.Count > 0 then for i := 0 to ActiveTaskStatusList.Count - 1 do
     begin
-      SingleObject := StoppedTaskStatusList.Objects[i];
-      with ListView1.Items.Add do
+      SingleJSONObject := ActiveTaskStatusList.Objects[i];
+      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
+      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
+      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
+      VirtualListView[nextProcessArrayIndex][1] :=
+        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
+        'uris'].Objects[0].Strings['uri'];
+      VirtualListView[nextProcessArrayIndex][2] :=
+        SingleJSONObject.Strings['completedLength'];
+      VirtualListView[nextProcessArrayIndex][3] :=
+        SingleJSONObject.Strings['totalLength'];
+      if lengthTotal = 0 then
+        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
+      else
+        VirtualListView[nextProcessArrayIndex][4] :=
+          (FloatToStrF(lengthCompleted / lengthTotal *
+          100, ffGeneral, 5, 2) + '%');
+      VirtualListView[nextProcessArrayIndex][5] :=
+        (SingleJSONObject.Strings['uploadLength']);
+      VirtualListView[nextProcessArrayIndex][6] :=
+        SingleJSONObject.Strings['downloadSpeed'];
+      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      nextProcessArrayIndex := nextProcessArrayIndex + 1;
+
+    end;
+
+
+  if WaitingTaskStatusList.Count > 0 then
+    for i := 0 to WaitingTaskStatusList.Count - 1 do
+    begin
+      SingleJSONObject := WaitingTaskStatusList.Objects[i];
+      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
+      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
+      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
+      VirtualListView[nextProcessArrayIndex][1] :=
+        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
+        'uris'].Objects[0].Strings['uri'];
+      VirtualListView[nextProcessArrayIndex][2] :=
+        SingleJSONObject.Strings['completedLength'];
+      VirtualListView[nextProcessArrayIndex][3] :=
+        SingleJSONObject.Strings['totalLength'];
+      if lengthTotal = 0 then
+        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
+      else
+        VirtualListView[nextProcessArrayIndex][4] :=
+          (FloatToStrF(lengthCompleted / lengthTotal *
+          100, ffGeneral, 5, 2) + '%');
+      VirtualListView[nextProcessArrayIndex][5] :=
+        (SingleJSONObject.Strings['uploadLength']);
+      VirtualListView[nextProcessArrayIndex][6] :=
+        SingleJSONObject.Strings['downloadSpeed'];
+      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      nextProcessArrayIndex := nextProcessArrayIndex + 1;
+    end;
+
+
+  if StoppedTaskStatusList.Count > 0 then
+    for i := 0 to StoppedTaskStatusList.Count - 1 do
+    begin
+      SingleJSONObject := StoppedTaskStatusList.Objects[i];
+      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
+      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
+      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
+      VirtualListView[nextProcessArrayIndex][1] :=
+        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
+        'uris'].Objects[0].Strings['uri'];
+      VirtualListView[nextProcessArrayIndex][2] :=
+        SingleJSONObject.Strings['completedLength'];
+      VirtualListView[nextProcessArrayIndex][3] :=
+        SingleJSONObject.Strings['totalLength'];
+      if lengthTotal = 0 then
+        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
+      else
+        VirtualListView[nextProcessArrayIndex][4] :=
+          (FloatToStrF(lengthCompleted / lengthTotal *
+          100, ffGeneral, 5, 2) + '%');
+      VirtualListView[nextProcessArrayIndex][5] :=
+        (SingleJSONObject.Strings['uploadLength']);
+      VirtualListView[nextProcessArrayIndex][6] :=
+        SingleJSONObject.Strings['downloadSpeed'];
+      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      nextProcessArrayIndex := nextProcessArrayIndex + 1;
+    end;
+
+
+  //Check if listview items enough
+  //i: total for times
+  i := totalTaskNum - ListView1.Items.Count;
+  if i > 0 then
+  begin
+    for ii := 0 to Pred(i) do
+    begin
+      with ListView1.Items.Add.SubItems do
       begin
-        Caption := SingleObject.Strings['gid'];
-        SubItems.Add(SingleObject.Arrays['files'].Objects[0].Arrays[
-          'uris'].Objects[0].Strings['uri']);
-        SubItems.Add(SingleObject.Strings['completedLength']);
-        SubItems.Add(SingleObject.Strings['totalLength']);
-        if SingleObject.Integers['totalLength'] = 0 then
-          SubItems.Add('N/A')
-        else
-          SubItems.Add(FloatToStrF(SingleObject.Integers['completedLength'] /
-            SingleObject.Integers['totalLength'] * 100, ffGeneral, 5, 2) + '%');
-        SubItems.Add(SingleObject.Strings['uploadLength']);
-        SubItems.Add(SingleObject.Strings['downloadSpeed']);
-        SubItems.Add(DownloadStopped);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
       end;
     end;
+  end;
+
+
+  //Compare and update items
+  //Per line
+  //i: line id, ii: column id
+  if (ListView1.Items.Count > 0) and (Length(VirtualListView) > 0) then
+    for i := 0 to pred(totalTaskNum) do
+    begin
+      SingleListItemObject := ListView1.Items[i];
+      //per column of this line
+      SingleListItemObject.Caption := VirtualListView[i][0];
+      //ShowMessage('Subitems:'+IntTOsTr(SingleListItemObject.SubItems.Count)) ;
+      for ii := 1 to pred(Length(VirtualListView[i])) do
+      begin
+
+        if SingleListItemObject.SubItems[pred(ii)] <> VirtualListView[i][ii] then
+          SingleListItemObject.SubItems[pred(ii)] := VirtualListView[i][ii];
+
+      end;
+    end;
+
+
+  //Delete useless items
+  //i: total for times
+  i := ListView1.Items.Count - totalTaskNum;
+  if i > 0 then
+  begin
+    for ii := 0 to Pred(i) do
+    begin
+      ListView1.Items.Delete(ListView1.Items.Count - 1);
+    end;
+  end;
+
 end;
 
 end.
