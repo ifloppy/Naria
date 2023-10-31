@@ -71,6 +71,7 @@ begin
   dlg := TFormSettings.Create(nil);
   dlg.ShowModal;
   dlg.Free;
+  MessageDlg(PleaseRestartApplication, mtWarning, [mbOK], 0);
 end;
 
 procedure TFormMain.btnUnpauseAllClick(Sender: TObject);
@@ -161,6 +162,8 @@ begin
     if ListView1.Items[selectedIndex].SubItems[6] = DownloadActive then
     begin
       mniTaskPause.Enabled := True;
+      mniTaskResume.Enabled := True;
+      mniTaskDelete.Enabled := True;
     end;
   end;
 

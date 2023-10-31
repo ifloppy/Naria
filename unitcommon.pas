@@ -78,6 +78,12 @@ begin
   ProcessInstance.Parameters.Add('--rpc-allow-origin-all=true');
   ProcessInstance.Parameters.Add('--max-concurrent-downloads=16');
 
+  tmp:=GlobalConfig.ReadString('BT', 'Tracker', '');
+  if tmp <> '' then begin
+    ProcessInstance.Parameters.Add('--bt-tracker='+tmp);
+  end;
+
+
   AriaParamToken:='token:'+GlobalConfig.ReadString('RPC', 'Secret', '')
 end;
 

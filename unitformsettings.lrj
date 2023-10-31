@@ -12,5 +12,8 @@
 {"hash":83483460,"name":"tformsettings.edtdownloadua.editlabel.caption","sourcebytes":[68,101,102,97,117,108,116,32,85,115,101,114,45,97,103,101,109,116],"value":"Default User-agemt"},
 {"hash":184411193,"name":"tformsettings.edtdownloadua.texthint","sourcebytes":[34,97,114,105,97,50,47,36,86,69,82,83,73,79,78,34,32,105,102,32,116,104,101,114,101,32,105,115,32,101,109,112,116,121],"value":"\"aria2/$VERSION\" if there is empty"},
 {"hash":115952286,"name":"tformsettings.btndownloadpathbrowse.caption","sourcebytes":[66,114,111,119,115,101,46,46,46],"value":"Browse..."},
-{"hash":126422979,"name":"tformsettings.label3.caption","sourcebytes":[85,65,32,112,114,101,115,101,116,115],"value":"UA presets"}
+{"hash":126422979,"name":"tformsettings.label3.caption","sourcebytes":[85,65,32,112,114,101,115,101,116,115],"value":"UA presets"},
+{"hash":142219555,"name":"tformsettings.tabsheet3.caption","sourcebytes":[84,114,97,99,107,101,114,115],"value":"Trackers"},
+{"hash":1559753,"name":"tformsettings.label4.caption","sourcebytes":[66,84,32,84,114,97,99,107,101,114,115,40,79,110,101,32,85,82,76,32,112,101,114,32,108,105,110,101,41],"value":"BT Trackers(One URL per line)"},
+{"hash":372803,"name":"tformsettings.btnupdatetrackersfromurl.caption","sourcebytes":[83,121,110,99],"value":"Sync"}
 ]}

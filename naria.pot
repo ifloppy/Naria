@@ -128,6 +128,10 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+#: tformsettings.btnupdatetrackersfromurl.caption
+msgid "Sync"
+msgstr ""
+
 #: tformsettings.caption
 msgid "Aria2 Settings"
 msgstr ""
@@ -165,12 +169,20 @@ msgstr ""
 msgid "UA presets"
 msgstr ""
 
+#: tformsettings.label4.caption
+msgid "BT Trackers(One URL per line)"
+msgstr ""
+
 #: tformsettings.tabsheet1.caption
 msgid "PRC"
 msgstr ""
 
 #: tformsettings.tabsheet2.caption
 msgid "Download"
+msgstr ""
+
+#: tformsettings.tabsheet3.caption
+msgid "Trackers"
 msgstr ""
 
 #: unitresourcestring.caption1
@@ -191,6 +203,10 @@ msgstr ""
 
 #: unitresourcestring.helloworld1
 msgid "Hello World"
+msgstr ""
+
+#: unitresourcestring.pleaserestartapplication
+msgid "You probably need to restart this application manually"
 msgstr ""
 
 #: unitresourcestring.texterror

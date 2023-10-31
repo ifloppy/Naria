@@ -1,43 +1,47 @@
 object FormSettings: TFormSettings
   Left = 377
-  Height = 225
+  Height = 326
   Top = 131
-  Width = 365
+  Width = 464
   Caption = 'Aria2 Settings'
-  ClientHeight = 225
-  ClientWidth = 365
+  ClientHeight = 326
+  ClientWidth = 464
   LCLVersion = '3.99.0.0'
+  OnClose = FormClose
   OnCreate = FormCreate
   object btnOK: TButton
-    Left = 277
+    Left = 376
     Height = 25
-    Top = 192
+    Top = 293
     Width = 75
+    Anchors = [akRight, akBottom]
     Caption = 'OK'
     TabOrder = 0
     OnClick = btnOKClick
   end
   object btnCancel: TButton
-    Left = 200
+    Left = 299
     Height = 25
-    Top = 192
+    Top = 293
     Width = 75
+    Anchors = [akRight, akBottom]
     Caption = 'Cancel'
     TabOrder = 1
     OnClick = btnCancelClick
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 192
+    Height = 293
     Top = 0
-    Width = 365
-    ActivePage = TabSheet1
-    TabIndex = 0
+    Width = 464
+    ActivePage = TabSheet3
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 2
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'PRC'
-      ClientHeight = 162
-      ClientWidth = 357
+      ClientHeight = 263
+      ClientWidth = 456
       object Label2: TLabel
         Left = 8
         Height = 17
@@ -74,22 +78,24 @@ object FormSettings: TFormSettings
         Left = 8
         Height = 25
         Top = 126
-        Width = 344
+        Width = 443
+        Anchors = [akTop, akLeft, akRight]
         TabOrder = 2
         TextHint = 'For secure your aira2, we suggest you use a secret'
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Download'
-      ClientHeight = 162
-      ClientWidth = 357
+      ClientHeight = 263
+      ClientWidth = 456
       object edtDownloadPath: TLabeledEdit
         Left = 8
         Height = 25
         Top = 32
-        Width = 264
+        Width = 363
+        Anchors = [akTop, akLeft, akRight]
         EditLabel.Height = 17
-        EditLabel.Width = 264
+        EditLabel.Width = 363
         EditLabel.Caption = 'Default path'
         TabOrder = 0
       end
@@ -97,18 +103,20 @@ object FormSettings: TFormSettings
         Left = 8
         Height = 25
         Top = 80
-        Width = 344
+        Width = 443
+        Anchors = [akTop, akLeft, akRight]
         EditLabel.Height = 17
-        EditLabel.Width = 344
+        EditLabel.Width = 443
         EditLabel.Caption = 'Default User-agemt'
         TabOrder = 1
         TextHint = '"aria2/$VERSION" if there is empty'
       end
       object btnDownloadPathBrowse: TButton
-        Left = 277
+        Left = 376
         Height = 25
         Top = 31
         Width = 75
+        Anchors = [akTop, akRight]
         Caption = 'Browse...'
         TabOrder = 2
         OnClick = btnDownloadPathBrowseClick
@@ -124,7 +132,8 @@ object FormSettings: TFormSettings
         Left = 80
         Height = 25
         Top = 109
-        Width = 268
+        Width = 367
+        Anchors = [akTop, akLeft, akRight]
         ItemHeight = 17
         Items.Strings = (
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0'
@@ -137,6 +146,45 @@ object FormSettings: TFormSettings
         ReadOnly = True
         TabOrder = 3
         OnChange = cbxUAPresetsChange
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Trackers'
+      ClientHeight = 263
+      ClientWidth = 456
+      object memoTracker: TMemo
+        Left = 8
+        Height = 188
+        Top = 32
+        Width = 438
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 17
+        Top = 8
+        Width = 176
+        Caption = 'BT Trackers(One URL per line)'
+      end
+      object btnUpdateTrackersFromURL: TButton
+        Left = 8
+        Height = 25
+        Top = 232
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = 'Sync'
+        TabOrder = 1
+        OnClick = btnUpdateTrackersFromURLClick
+      end
+      object edtUpdateTrackersURL: TEdit
+        Left = 88
+        Height = 25
+        Top = 235
+        Width = 360
+        Anchors = [akLeft, akRight, akBottom]
+        TabOrder = 2
       end
     end
   end

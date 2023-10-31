@@ -11,11 +11,14 @@ interface
 
   //General
   TextError = 'Error';
+  PleaseRestartApplication = 'You probably need to restart this application manually';
 
   //download task status
   DownloadStopped = 'Stopped';
   DownloadActive = 'Downloading';
   DownloadWaiting = 'Waiting';
+
+
 implementation
 
 end.
