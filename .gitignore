@@ -1,6 +1,6 @@
 *.exe
 *.dbg
-*.session
+*.session*
 *.ini
 *.res
 /lib
