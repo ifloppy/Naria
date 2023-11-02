@@ -223,6 +223,10 @@ msgstr ""
 msgid "You probably need to restart this application manually"
 msgstr ""
 
+#: unitresourcestring.requiredefaultdownloadpath
+msgid "An available default path is required"
+msgstr ""
+
 #: unitresourcestring.texterror
 msgid "Error"
 msgstr ""

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  ComCtrls, ExtCtrls, LazFileUtils, Types, fphttpclient;
+  ComCtrls, ExtCtrls, LazFileUtils, Types, fphttpclient, unitresourcestring;
 
 type
 
@@ -44,7 +44,7 @@ type
   private
 
   public
-    FirstUse: Boolean;
+    FirstUse: boolean;
   end;
 
 var
@@ -55,14 +55,19 @@ implementation
 
 uses unitcommon;
 
-{$R *.lfm}
+  {$R *.lfm}
 
-{ TFormSettings }
+  { TFormSettings }
 
 procedure TFormSettings.btnOKClick(Sender: TObject);
 var
   tmp: string;
 begin
+  if not DirectoryExists(edtDownloadPath.Text) then begin
+    ShowMessage(RequireDefaultDownloadPath);
+    exit;
+  end;
+
 
   GlobalConfig.WriteBool('RPC', 'ListenAll', ckbListenAll.Checked);
   GlobalConfig.WriteInt64('RPC', 'Port', speRPCPort.Value);
@@ -70,9 +75,13 @@ begin
   GlobalConfig.WriteString('Download', 'Path', edtDownloadPath.Text);
   GlobalConfig.WriteString('DOwnload', 'User-Agent', edtDownloadUA.Text);
 
-  tmp:=StringReplace(memoTracker.Lines.Text, LineEnding, ',', [rfReplaceAll]);
-  if tmp[High(tmp)] = ',' then Delete(tmp, High(tmp), 1);
-  GlobalConfig.WriteString('BT', 'Tracker', tmp);
+  if memoTracker.Lines.Text <> '' then
+  begin
+    tmp := StringReplace(memoTracker.Lines.Text, LineEnding, ',', [rfReplaceAll]);
+    if tmp[High(tmp)] = ',' then Delete(tmp, High(tmp), 1);
+    GlobalConfig.WriteString('BT', 'Tracker', tmp);
+  end;
+
 
   GlobalConfig.WriteString('BT', 'TrackerSyncServer', edtUpdateTrackersURL.Text);
   Close;
@@ -84,53 +93,57 @@ var
   r: string;
 begin
   if edtUpdateTrackersURL.Text = '' then exit;
-  httpclient:=TFPHTTPClient.Create(nil);
+  httpclient := TFPHTTPClient.Create(nil);
   try
-    r:=httpclient.Get(edtUpdateTrackersURL.Text);
+    r := httpclient.Get(edtUpdateTrackersURL.Text);
 
   finally
-    memoTracker.Lines.Text:=r;
-    memoTracker.Text:=StringReplace(memoTracker.Lines.Text, LineEnding+LineEnding, LineEnding, [rfReplaceAll]);
+    memoTracker.Lines.Text := r;
+    memoTracker.Text := StringReplace(memoTracker.Lines.Text,
+      LineEnding + LineEnding, LineEnding, [rfReplaceAll]);
   end;
   httpclient.Free;
 end;
 
 procedure TFormSettings.cbxUAPresetsChange(Sender: TObject);
 begin
-  edtDownloadUA.Text:=cbxUAPresets.Text;
-  cbxUAPresets.Text:='';
+  edtDownloadUA.Text := cbxUAPresets.Text;
+  cbxUAPresets.Text := '';
 end;
 
-procedure TFormSettings.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
+procedure TFormSettings.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if FirstUse then Application.Terminate;
 end;
 
 procedure TFormSettings.btnCancelClick(Sender: TObject);
 begin
-  if FirstUse then btnOKClick(nil) else Close;
+  if FirstUse then btnOKClick(nil)
+  else
+    Close;
 
 end;
 
 procedure TFormSettings.btnDownloadPathBrowseClick(Sender: TObject);
 begin
-  if SelectDirectoryDialog1.Execute then edtDownloadPath.Text:=SelectDirectoryDialog1.FileName;
+  if SelectDirectoryDialog1.Execute then
+    edtDownloadPath.Text := SelectDirectoryDialog1.FileName;
 end;
 
 procedure TFormSettings.FormCreate(Sender: TObject);
 begin
 
-  ckbListenAll.Checked:=GlobalConfig.ReadBool('RPC', 'ListenAll', false);
-  speRPCPort.Value:=GlobalConfig.ReadInt64('RPC', 'Port', 6800);
-  edtRPCPassword.Text:=GlobalConfig.ReadString('RPC', 'Secret', '');
-  edtDownloadPath.Text:=GlobalConfig.ReadString('Download', 'Path', '');
-  edtDownloadUA.Text:=GlobalConfig.ReadString('Download', 'User-Agent', '');
-  memoTracker.Lines.Text:=StringReplace(GlobalConfig.ReadString('BT', 'Tracker', ''), ',', LineEnding, [rfReplaceAll]);
-  edtUpdateTrackersURL.Text:=GlobalConfig.ReadString('BT', 'TrackerSyncServer', 'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt');
+  ckbListenAll.Checked := GlobalConfig.ReadBool('RPC', 'ListenAll', False);
+  speRPCPort.Value := GlobalConfig.ReadInt64('RPC', 'Port', 6800);
+  edtRPCPassword.Text := GlobalConfig.ReadString('RPC', 'Secret', '');
+  edtDownloadPath.Text := GlobalConfig.ReadString('Download', 'Path', '');
+  edtDownloadUA.Text := GlobalConfig.ReadString('Download', 'User-Agent', '');
+  memoTracker.Lines.Text := StringReplace(GlobalConfig.ReadString('BT', 'Tracker', ''),
+    ',', LineEnding, [rfReplaceAll]);
+  edtUpdateTrackersURL.Text := GlobalConfig.ReadString('BT', 'TrackerSyncServer',
+    'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt');
 
 end;
 
 
 end.
-

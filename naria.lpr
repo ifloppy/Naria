@@ -11,7 +11,8 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, unitformmain, unitformsettings, unitcommon, IniFiles,
-  unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator
+  unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator,
+  LazFileUtils
   { you can add units after this };
 
 {$R *.res}
@@ -21,6 +22,10 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   GlobalConfig:=TIniFile.Create('config.ini');
+  if not FileExistsUTF8('download.session') then begin
+    FileCreateUTF8('download.session');
+  end;
+
   if not GlobalConfig.SectionExists('RPC') then begin
     FormSettings:=TFormSettings.Create(nil);
     FormSettings.FirstUse:=true;

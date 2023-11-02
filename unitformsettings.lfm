@@ -1,7 +1,7 @@
 object FormSettings: TFormSettings
-  Left = 377
+  Left = 396
   Height = 326
-  Top = 131
+  Top = 185
   Width = 464
   Caption = 'Aria2 Settings'
   ClientHeight = 326
@@ -34,9 +34,9 @@ object FormSettings: TFormSettings
     Height = 293
     Top = 0
     Width = 464
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'PRC'

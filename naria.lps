@@ -9,9 +9,10 @@
       <Unit>
         <Filename Value="naria.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <CursorPos X="14" Y="16"/>
-        <UsageCount Value="52"/>
+        <CursorPos X="38" Y="28"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -22,7 +23,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="32"/>
         <CursorPos X="27" Y="36"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,9 +34,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="97"/>
-        <CursorPos X="85" Y="129"/>
-        <UsageCount Value="52"/>
+        <TopLine Value="55"/>
+        <CursorPos X="56" Y="64"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -43,16 +44,17 @@
         <Filename Value="unitcommon.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="41" Y="16"/>
-        <UsageCount Value="52"/>
+        <TopLine Value="49"/>
+        <CursorPos X="39" Y="81"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitresourcestring.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="85" Y="14"/>
-        <UsageCount Value="52"/>
+        <CursorPos X="38" Y="3"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -61,11 +63,10 @@
         <ComponentName Value="FormNewTask"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="26"/>
-        <CursorPos Y="65"/>
-        <UsageCount Value="47"/>
+        <TopLine Value="27"/>
+        <CursorPos X="19" Y="28"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -172,20 +173,29 @@
         <CursorPos X="3" Y="52"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\components\lazutils\lazfileutils.pas"/>
+        <UnitName Value="LazFileUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="111"/>
+        <CursorPos X="10" Y="131"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\components\lazutils\winlazfileutils.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="49"/>
+        <CursorPos X="3" Y="51"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\win\wininc\redef.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="102" Column="5" TopLine="86"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="250" Column="61" TopLine="231"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="217" Column="71" TopLine="194"/>
-      </Position>
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="215" Column="87" TopLine="109"/>
@@ -283,16 +293,20 @@
         <Caret Line="253" Column="38" TopLine="234"/>
       </Position>
       <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="93" Column="18" TopLine="98"/>
-      </Position>
-      <Position>
         <Filename Value="unitcommon.pas"/>
         <Caret Line="42" Column="29" TopLine="19"/>
       </Position>
       <Position>
         <Filename Value="unitcommon.pas"/>
         <Caret Line="43" Column="14" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="unitformsettings.pas"/>
+        <Caret Line="129" Column="85" TopLine="97"/>
+      </Position>
+      <Position>
+        <Filename Value="naria.lpr"/>
+        <Caret Line="26" Column="39"/>
       </Position>
     </JumpHistory>
     <RunParams>
