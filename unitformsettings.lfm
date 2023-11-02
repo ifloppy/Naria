@@ -34,9 +34,9 @@ object FormSettings: TFormSettings
     Height = 293
     Top = 0
     Width = 464
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'PRC'

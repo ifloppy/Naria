@@ -25,6 +25,8 @@ type
     destructor Destroy; override;
   end;
 
+function FileSizeToHumanReadableString(FileSize: int64): string;
+
 var
   GlobalConfig: TIniFile;
   AriaProcessManager: TAriaProcessManager;
@@ -43,7 +45,7 @@ end;
 
 destructor TAriaProcessManager.Destroy;
 begin
-  //ProcessInstance.Terminate(0);
+  ProcessInstance.Terminate(0);
   ProcessInstance.Free;
 end;
 
@@ -86,6 +88,17 @@ begin
 
   AriaParamToken:='token:'+GlobalConfig.ReadString('RPC', 'Secret', '')
 end;
+
+function FileSizeToHumanReadableString(FileSize: int64): string;
+begin
+  if FileSize >= 1024*1024*1024 then
+    Result := FloatToStrF(FileSize/(1024*1024*1024), ffFixed, 15, 2) + ' GB'
+  else if FileSize >= 1024*1024 then
+    Result := FloatToStrF(FileSize/(1024*1024), ffFixed, 15, 2) + ' MB'
+  else
+    Result := IntToStr(FileSize) + ' bytes';
+end;
+
 
 end.
 

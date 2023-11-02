@@ -91,6 +91,9 @@ end;
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   client.Call('aria2.shutdown', [AriaParamToken], 0);
+  Sleep(500);
+  client.Call('aria2.forceShutdown', [AriaParamToken], 0);
+  Sleep(100);
   AriaProcessManager.Free;
 
   ActiveTaskStatusList.Free;
@@ -112,7 +115,7 @@ end;
 
 procedure TFormMain.mniTaskCopyURLClick(Sender: TObject);
 begin
-  Clipboard.AsText := ListView1.Selected.SubItems.Strings[8];
+  Clipboard.AsText := ListView1.Selected.SubItems.Strings[7];
 end;
 
 procedure TFormMain.mniTaskDeleteClick(Sender: TObject);
@@ -203,10 +206,10 @@ begin
   Result := resp.Objects['result'].Clone as TJSONObject;
   resp.Free;
 
-  sb.Panels.Items[0].Text := '↓ ' + Utf8ToAnsi(Result.Strings['downloadSpeed']) +
-    'byte/s';
-  sb.Panels.Items[1].Text := '↑ ' + Utf8ToAnsi(Result.Strings['uploadSpeed']) +
-    'byte/s';
+  sb.Panels.Items[0].Text := '↓ ' + Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['downloadSpeed'])) +
+    '/s';
+  sb.Panels.Items[1].Text := '↑ ' + Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['uploadSpeed'])) +
+    '/s';
   sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
 
   Result.Free;
@@ -237,9 +240,9 @@ begin
 
 
       Result[2] :=
-        SingleJSONObject.Strings['completedLength'];
+        FileSizeToHumanReadableString(SingleJSONObject.Int64s['completedLength']);
       Result[3] :=
-        SingleJSONObject.Strings['totalLength'];
+        FileSizeToHumanReadableString(SingleJSONObject.Int64s['totalLength']);
       if lengthTotal = 0 then
         Result[4] := ('N/A')
       else
@@ -247,9 +250,9 @@ begin
           (FloatToStrF(lengthCompleted / lengthTotal * 100, ffGeneral,
           5, 2) + '%');
       Result[5] :=
-        (SingleJSONObject.Strings['uploadLength']);
+        FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
       Result[6] :=
-        SingleJSONObject.Strings['downloadSpeed'];
+        FileSizeToHumanReadableString(SingleJSONObject.Integers['downloadSpeed'])+'/s';
       Result[7] := (DownloadStatus);
 
 end;
@@ -268,7 +271,6 @@ begin
   respJSON := GetJSON(r) as TJSONObject;
   ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
-  WriteLn(r);
 
   r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
   WaitingTaskStatusList.Free;
