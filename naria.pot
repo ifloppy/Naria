@@ -32,7 +32,7 @@ msgstr ""
 
 #: tformmain.listview1.columns[1].caption
 msgctxt "tformmain.listview1.columns[1].caption"
-msgid "URL"
+msgid "Name"
 msgstr ""
 
 #: tformmain.listview1.columns[2].caption
@@ -58,6 +58,11 @@ msgstr ""
 
 #: tformmain.listview1.columns[7].caption
 msgid "Status"
+msgstr ""
+
+#: tformmain.listview1.columns[8].caption
+msgctxt "tformmain.listview1.columns[8].caption"
+msgid "URL"
 msgstr ""
 
 #: tformmain.mnitaskcopyurl.caption
@@ -93,6 +98,10 @@ msgstr ""
 msgid "Waiting num"
 msgstr ""
 
+#: tformnewtask.btnbrowsetorrent.caption
+msgid "Browse"
+msgstr ""
+
 #: tformnewtask.btncancel.caption
 msgctxt "tformnewtask.btncancel.caption"
 msgid "Cancel"
@@ -110,9 +119,21 @@ msgstr ""
 msgid "Download URL"
 msgstr ""
 
+#: tformnewtask.edttorrentpath.editlabel.caption
+msgid "Torrent file"
+msgstr ""
+
+#: tformnewtask.opendialog1.title
+msgid "Open a torrent"
+msgstr ""
+
 #: tformnewtask.tabsheet1.caption
 msgctxt "tformnewtask.tabsheet1.caption"
 msgid "URL"
+msgstr ""
+
+#: tformnewtask.tabsheet2.caption
+msgid "Torrent"
 msgstr ""
 
 #: tformsettings.btncancel.caption

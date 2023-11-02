@@ -14,8 +14,8 @@ object FormNewTask: TFormNewTask
     Height = 200
     Top = 0
     Width = 392
-    ActivePage = TabSheet1
-    TabIndex = 0
+    ActivePage = TabSheet2
+    TabIndex = 1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'URL'
@@ -30,6 +30,30 @@ object FormNewTask: TFormNewTask
         EditLabel.Width = 368
         EditLabel.Caption = 'Download URL'
         TabOrder = 0
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Torrent'
+      ClientHeight = 170
+      ClientWidth = 384
+      object edtTorrentPath: TLabeledEdit
+        Left = 8
+        Height = 25
+        Top = 28
+        Width = 368
+        EditLabel.Height = 17
+        EditLabel.Width = 368
+        EditLabel.Caption = 'Torrent file'
+        TabOrder = 0
+      end
+      object btnBrowseTorrent: TButton
+        Left = 296
+        Height = 25
+        Top = 64
+        Width = 75
+        Caption = 'Browse'
+        TabOrder = 1
+        OnClick = btnBrowseTorrentClick
       end
     end
   end
@@ -50,5 +74,11 @@ object FormNewTask: TFormNewTask
     Caption = 'Cancel'
     TabOrder = 2
     OnClick = btnCancelClick
+  end
+  object OpenDialog1: TOpenDialog
+    Title = 'Open a torrent'
+    Filter = 'Torrent File|*.torrent'
+    Left = 24
+    Top = 96
   end
 end

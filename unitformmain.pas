@@ -11,6 +11,8 @@ uses
 
 type
 
+  TSingleDownloadTaskItem = array[0..8] of string;
+
   { TFormMain }
 
   TFormMain = class(TForm)
@@ -35,6 +37,7 @@ type
     procedure btnUnpauseAllClick(Sender: TObject);
     procedure ckbRefreshTaskListChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure ListView1ContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: boolean);
     procedure mniTaskCopyURLClick(Sender: TObject);
@@ -95,6 +98,11 @@ begin
   StoppedTaskStatusList.Free;
 end;
 
+procedure TFormMain.FormCreate(Sender: TObject);
+begin
+
+end;
+
 procedure TFormMain.ListView1ContextPopup(Sender: TObject; MousePos: TPoint;
   var Handled: boolean);
 begin
@@ -104,7 +112,7 @@ end;
 
 procedure TFormMain.mniTaskCopyURLClick(Sender: TObject);
 begin
-  Clipboard.AsText := ListView1.Selected.SubItems.Strings[0];
+  Clipboard.AsText := ListView1.Selected.SubItems.Strings[8];
 end;
 
 procedure TFormMain.mniTaskDeleteClick(Sender: TObject);
@@ -204,6 +212,49 @@ begin
   Result.Free;
 end;
 
+function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject; DownloadStatus: string): TSingleDownloadTaskItem;
+var
+  lengthTotal, lengthCompleted: Int64;
+  tmpJSONData: TJSONData;
+begin
+      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
+      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
+      Result[0] := SingleJSONObject.Strings['gid'];
+
+      tmpJSONData := SingleJSONObject.Arrays['files'].Objects[0].Find('url');
+      if tmpJSONData<>nil then
+      begin
+        Result[8] := tmpJSONData.AsString;
+        Result[1] := ExtractFileName(Result[8]);
+      end;
+      tmpJSONData:=nil;
+      tmpJSONData := SingleJSONObject.Find('bittorrent');
+      if tmpJSONData<>nil then
+      begin
+        Result[1] :=
+          (tmpJSONData as TJSONObject).Objects['info'].Strings['name'];
+      end;
+      tmpJSONData:=nil;
+
+
+
+      Result[2] :=
+        SingleJSONObject.Strings['completedLength'];
+      Result[3] :=
+        SingleJSONObject.Strings['totalLength'];
+      if lengthTotal = 0 then
+        Result[4] := ('N/A')
+      else
+        Result[4] :=
+          (FloatToStrF(lengthCompleted / lengthTotal * 100, ffGeneral,
+          5, 2) + '%');
+      Result[5] :=
+        (SingleJSONObject.Strings['uploadLength']);
+      Result[6] :=
+        SingleJSONObject.Strings['downloadSpeed'];
+      Result[7] := (DownloadStatus);
+end;
+
 procedure TFormMain.TimerRefreshTaskListTimer(Sender: TObject);
 var
   r: string;
@@ -211,14 +262,14 @@ var
   SingleListItemObject: TListItem;
   i, ii, totalTaskNum, nextProcessArrayIndex: integer;
   respJSON: TJSONObject;
-  VirtualListView: array of array[0..7] of string;
-  lengthTotal, lengthCompleted: Int64;
+  VirtualListView: array of TSingleDownloadTaskItem;
 begin
   r := client.Call('aria2.tellActive', [AriaParamToken], 1);
   ActiveTaskStatusList.Free;
   respJSON := GetJSON(r) as TJSONObject;
   ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
+
 
   r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
   WaitingTaskStatusList.Free;
@@ -239,31 +290,10 @@ begin
 
 
   //Get task list
-
   if ActiveTaskStatusList.Count > 0 then for i := 0 to ActiveTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := ActiveTaskStatusList.Objects[i];
-      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
-      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
-      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
-      VirtualListView[nextProcessArrayIndex][1] :=
-        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
-        'uris'].Objects[0].Strings['uri'];
-      VirtualListView[nextProcessArrayIndex][2] :=
-        SingleJSONObject.Strings['completedLength'];
-      VirtualListView[nextProcessArrayIndex][3] :=
-        SingleJSONObject.Strings['totalLength'];
-      if lengthTotal = 0 then
-        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
-      else
-        VirtualListView[nextProcessArrayIndex][4] :=
-          (FloatToStrF(lengthCompleted / lengthTotal *
-          100, ffGeneral, 5, 2) + '%');
-      VirtualListView[nextProcessArrayIndex][5] :=
-        (SingleJSONObject.Strings['uploadLength']);
-      VirtualListView[nextProcessArrayIndex][6] :=
-        SingleJSONObject.Strings['downloadSpeed'];
-      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
 
     end;
@@ -273,27 +303,7 @@ begin
     for i := 0 to WaitingTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := WaitingTaskStatusList.Objects[i];
-      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
-      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
-      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
-      VirtualListView[nextProcessArrayIndex][1] :=
-        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
-        'uris'].Objects[0].Strings['uri'];
-      VirtualListView[nextProcessArrayIndex][2] :=
-        SingleJSONObject.Strings['completedLength'];
-      VirtualListView[nextProcessArrayIndex][3] :=
-        SingleJSONObject.Strings['totalLength'];
-      if lengthTotal = 0 then
-        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
-      else
-        VirtualListView[nextProcessArrayIndex][4] :=
-          (FloatToStrF(lengthCompleted / lengthTotal *
-          100, ffGeneral, 5, 2) + '%');
-      VirtualListView[nextProcessArrayIndex][5] :=
-        (SingleJSONObject.Strings['uploadLength']);
-      VirtualListView[nextProcessArrayIndex][6] :=
-        SingleJSONObject.Strings['downloadSpeed'];
-      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
@@ -302,27 +312,7 @@ begin
     for i := 0 to StoppedTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := StoppedTaskStatusList.Objects[i];
-      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
-      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
-      VirtualListView[nextProcessArrayIndex][0] := SingleJSONObject.Strings['gid'];
-      VirtualListView[nextProcessArrayIndex][1] :=
-        SingleJSONObject.Arrays['files'].Objects[0].Arrays[
-        'uris'].Objects[0].Strings['uri'];
-      VirtualListView[nextProcessArrayIndex][2] :=
-        SingleJSONObject.Strings['completedLength'];
-      VirtualListView[nextProcessArrayIndex][3] :=
-        SingleJSONObject.Strings['totalLength'];
-      if lengthTotal = 0 then
-        VirtualListView[nextProcessArrayIndex][4] := ('N/A')
-      else
-        VirtualListView[nextProcessArrayIndex][4] :=
-          (FloatToStrF(lengthCompleted / lengthTotal *
-          100, ffGeneral, 5, 2) + '%');
-      VirtualListView[nextProcessArrayIndex][5] :=
-        (SingleJSONObject.Strings['uploadLength']);
-      VirtualListView[nextProcessArrayIndex][6] :=
-        SingleJSONObject.Strings['downloadSpeed'];
-      VirtualListView[nextProcessArrayIndex][7] := (DownloadActive);
+      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
@@ -336,6 +326,7 @@ begin
     begin
       with ListView1.Items.Add.SubItems do
       begin
+        Add(EmptyStr);
         Add(EmptyStr);
         Add(EmptyStr);
         Add(EmptyStr);

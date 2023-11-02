@@ -2,6 +2,10 @@
 {"hash":207565963,"name":"tformnewtask.caption","sourcebytes":[78,101,119,32,68,111,119,110,108,111,97,100,32,84,97,115,107],"value":"New Download Task"},
 {"hash":23148,"name":"tformnewtask.tabsheet1.caption","sourcebytes":[85,82,76],"value":"URL"},
 {"hash":29409116,"name":"tformnewtask.edtdownloadurl.editlabel.caption","sourcebytes":[68,111,119,110,108,111,97,100,32,85,82,76],"value":"Download URL"},
+{"hash":191466500,"name":"tformnewtask.tabsheet2.caption","sourcebytes":[84,111,114,114,101,110,116],"value":"Torrent"},
+{"hash":13654245,"name":"tformnewtask.edttorrentpath.editlabel.caption","sourcebytes":[84,111,114,114,101,110,116,32,102,105,108,101],"value":"Torrent file"},
+{"hash":77164181,"name":"tformnewtask.btnbrowsetorrent.caption","sourcebytes":[66,114,111,119,115,101],"value":"Browse"},
 {"hash":5941396,"name":"tformnewtask.btnstart.caption","sourcebytes":[83,116,97,114,116],"value":"Start"},
-{"hash":77089212,"name":"tformnewtask.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+{"hash":77089212,"name":"tformnewtask.btncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":229240388,"name":"tformnewtask.opendialog1.title","sourcebytes":[79,112,101,110,32,97,32,116,111,114,114,101,110,116],"value":"Open a torrent"}
 ]}

@@ -8,6 +8,7 @@ object FormMain: TFormMain
   ClientWidth = 616
   LCLVersion = '3.99.0.0'
   OnClose = FormClose
+  OnCreate = FormCreate
   object btnSettings: TButton
     Left = 8
     Height = 25
@@ -81,8 +82,8 @@ object FormMain: TFormMain
       end    
       item
         AutoSize = True
-        Caption = 'URL'
-        Width = 40
+        Caption = 'Name'
+        Width = 52
       end    
       item
         AutoSize = True
@@ -113,6 +114,9 @@ object FormMain: TFormMain
         AutoSize = True
         Caption = 'Status'
         Width = 52
+      end    
+      item
+        Caption = 'URL'
       end>
     ReadOnly = True
     ScrollBars = ssAutoBoth
