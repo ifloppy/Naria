@@ -221,18 +221,16 @@ begin
       lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
       Result[0] := SingleJSONObject.Strings['gid'];
 
-      tmpJSONData := SingleJSONObject.Arrays['files'].Objects[0].Find('url');
-      if tmpJSONData<>nil then
-      begin
-        Result[8] := tmpJSONData.AsString;
-        Result[1] := ExtractFileName(Result[8]);
-      end;
       tmpJSONData:=nil;
       tmpJSONData := SingleJSONObject.Find('bittorrent');
-      if tmpJSONData<>nil then
+      if Assigned(tmpJSONData) then
       begin
         Result[1] :=
           (tmpJSONData as TJSONObject).Objects['info'].Strings['name'];
+      end else begin
+        tmpJSONData := SingleJSONObject.Find('files');
+        Result[8] := (tmpJSONData as TJSONArray).Objects[0].Arrays['uris'].Objects[0].Strings['uri'];
+        Result[1] := ExtractFileName((tmpJSONData as TJSONArray).Objects[0].Strings['path']);
       end;
       tmpJSONData:=nil;
 
@@ -253,6 +251,7 @@ begin
       Result[6] :=
         SingleJSONObject.Strings['downloadSpeed'];
       Result[7] := (DownloadStatus);
+
 end;
 
 procedure TFormMain.TimerRefreshTaskListTimer(Sender: TObject);
@@ -269,7 +268,7 @@ begin
   respJSON := GetJSON(r) as TJSONObject;
   ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
-
+  WriteLn(r);
 
   r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
   WaitingTaskStatusList.Free;

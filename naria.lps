@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
         <CursorPos X="11" Y="3"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,9 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="247"/>
-        <CursorPos X="40" Y="269"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="208"/>
+        <CursorPos X="26" Y="218"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -35,7 +35,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="97"/>
         <CursorPos X="85" Y="129"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -45,7 +45,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="52"/>
         <CursorPos X="40" Y="54"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -53,7 +53,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="85" Y="14"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -65,7 +65,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="47"/>
         <CursorPos X="37" Y="65"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -127,8 +127,8 @@
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-json\src\fpjson.pp"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="104"/>
-        <CursorPos X="3" Y="124"/>
+        <TopLine Value="4135"/>
+        <CursorPos X="3" Y="4149"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -160,10 +160,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="274" TopLine="242"/>
-      </Position>
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="273" TopLine="242"/>
@@ -230,10 +226,6 @@
       </Position>
       <Position>
         <Filename Value="unitformmain.pas"/>
-        <Caret Line="216" Column="6" TopLine="225"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
         <Caret Line="218" Column="26" TopLine="201"/>
       </Position>
       <Position>
@@ -262,10 +254,6 @@
       </Position>
       <Position>
         <Filename Value="unitformmain.pas"/>
-        <Caret Line="14" Column="39" TopLine="140"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
         <Caret Line="115" Column="60" TopLine="113"/>
       </Position>
       <Position>
@@ -280,6 +268,18 @@
         <Filename Value="unitformmain.pas"/>
         <Caret Line="340" Column="24" TopLine="279"/>
       </Position>
+      <Position>
+        <Filename Value="unitformmain.pas"/>
+        <Caret Line="227" Column="99" TopLine="205"/>
+      </Position>
+      <Position>
+        <Filename Value="unitformmain.pas"/>
+        <Caret Line="226" Column="12" TopLine="205"/>
+      </Position>
+      <Position>
+        <Filename Value="unitformmain.pas"/>
+        <Caret Line="228" Column="32" TopLine="205"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -289,16 +289,8 @@
   <Debugging>
     <Watches>
       <Item>
-        <Expression Value="i"/>
-      </Item>
-      <Item>
-        <Expression Value="ii"/>
-      </Item>
-      <Item>
-        <Expression Value="VirtualListView"/>
-      </Item>
-      <Item>
-        <Expression Value="r"/>
+        <Expression Value="dbg"/>
+        <DisplayStyle Value="wdfString"/>
       </Item>
     </Watches>
   </Debugging>
