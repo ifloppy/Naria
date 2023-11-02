@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, unitformmain, unitformsettings, unitcommon, IniFiles,
-  unitresourcestring, ceosmw, unitformnewtask, opensslsockets
+  unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator
   { you can add units after this };
 
 {$R *.res}

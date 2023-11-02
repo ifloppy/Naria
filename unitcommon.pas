@@ -5,12 +5,12 @@ unit unitcommon;
 interface
 
 uses
-  Classes, SysUtils, IniFiles, AsyncProcess;
+  Classes, SysUtils, IniFiles, AsyncProcess, process;
 
 const
   {$IfDef Windows}
   ariaExecutable = 'aria2c.exe';
-  {$ElseIf}
+  {$Else}
   ariaExecutable = 'aria2c';
   {$EndIf}
 
@@ -39,7 +39,7 @@ constructor TAriaProcessManager.Create;
 begin
   Self.ProcessInstance:=TAsyncProcess.Create(nil);
   ProcessInstance.Executable:=GetCurrentDir+'/'+ariaExecutable;
-
+  ProcessInstance.Options:=[poNoConsole];
   LoadConfig();
 end;
 

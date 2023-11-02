@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Height = 347
   Top = 262
   Width = 616
-  Caption = 'FormMain'
+  Caption = 'ifloppy/Naria'
   ClientHeight = 347
   ClientWidth = 616
   LCLVersion = '3.99.0.0'

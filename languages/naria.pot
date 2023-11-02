@@ -1,0 +1,233 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tformmain.btnnewtask.caption
+msgid "New Task"
+msgstr ""
+
+#: tformmain.btnpauseall.caption
+msgid "Pause all"
+msgstr ""
+
+#: tformmain.btnsettings.caption
+msgid "Settings"
+msgstr ""
+
+#: tformmain.btnunpauseall.caption
+msgid "Resume all"
+msgstr ""
+
+#: tformmain.caption
+msgid "ifloppy/Naria"
+msgstr ""
+
+#: tformmain.ckbrefreshtasklist.caption
+msgid "Refresh download task list"
+msgstr ""
+
+#: tformmain.listview1.columns[0].caption
+msgid "gid"
+msgstr ""
+
+#: tformmain.listview1.columns[1].caption
+msgid "Name"
+msgstr ""
+
+#: tformmain.listview1.columns[2].caption
+msgid "Downloaded size"
+msgstr ""
+
+#: tformmain.listview1.columns[3].caption
+msgid "Total size"
+msgstr ""
+
+#: tformmain.listview1.columns[4].caption
+msgid "Progress"
+msgstr ""
+
+#: tformmain.listview1.columns[5].caption
+msgid "Uploaded size"
+msgstr ""
+
+#: tformmain.listview1.columns[6].caption
+msgctxt "tformmain.listview1.columns[6].caption"
+msgid "Download speed"
+msgstr ""
+
+#: tformmain.listview1.columns[7].caption
+msgid "Status"
+msgstr ""
+
+#: tformmain.listview1.columns[8].caption
+msgctxt "tformmain.listview1.columns[8].caption"
+msgid "URL"
+msgstr ""
+
+#: tformmain.mnitaskcopyurl.caption
+msgid "Copy URL"
+msgstr ""
+
+#: tformmain.mnitaskdelete.caption
+msgid "Delete"
+msgstr ""
+
+#: tformmain.mnitaskpause.caption
+msgid "Pause"
+msgstr ""
+
+#: tformmain.mnitaskresume.caption
+msgid "Resume"
+msgstr ""
+
+#: tformmain.sb.panels[0].text
+msgctxt "tformmain.sb.panels[0].text"
+msgid "Download speed"
+msgstr ""
+
+#: tformmain.sb.panels[1].text
+msgid "Upload speed"
+msgstr ""
+
+#: tformmain.sb.panels[2].text
+msgid "Waiting num"
+msgstr ""
+
+#: tformnewtask.btnbrowsetorrent.caption
+msgid "Browse"
+msgstr ""
+
+#: tformnewtask.btncancel.caption
+msgctxt "tformnewtask.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformnewtask.btnstart.caption
+msgid "Start"
+msgstr ""
+
+#: tformnewtask.caption
+msgid "New Download Task"
+msgstr ""
+
+#: tformnewtask.edtdownloadurl.editlabel.caption
+msgid "Download URL"
+msgstr ""
+
+#: tformnewtask.edttorrentpath.editlabel.caption
+msgid "Torrent file"
+msgstr ""
+
+#: tformnewtask.opendialog1.title
+msgid "Open a torrent"
+msgstr ""
+
+#: tformnewtask.tabsheet1.caption
+msgctxt "tformnewtask.tabsheet1.caption"
+msgid "URL"
+msgstr ""
+
+#: tformnewtask.tabsheet2.caption
+msgid "Torrent"
+msgstr ""
+
+#: tformsettings.btncancel.caption
+msgctxt "tformsettings.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformsettings.btndownloadpathbrowse.caption
+msgid "Browse..."
+msgstr ""
+
+#: tformsettings.btnok.caption
+msgid "OK"
+msgstr ""
+
+#: tformsettings.btnupdatetrackersfromurl.caption
+msgid "Sync"
+msgstr ""
+
+#: tformsettings.caption
+msgid "Aria2 Settings"
+msgstr ""
+
+#: tformsettings.ckblistenall.caption
+msgid "Listen RPC requests on all network interfaces"
+msgstr ""
+
+#: tformsettings.edtdownloadpath.editlabel.caption
+msgid "Default path"
+msgstr ""
+
+#: tformsettings.edtdownloadua.editlabel.caption
+msgid "Default User-agemt"
+msgstr ""
+
+#: tformsettings.edtdownloadua.texthint
+msgid "\"aria2/$VERSION\" if there is empty"
+msgstr ""
+
+#: tformsettings.edtrpcpassword.texthint
+msgid "For secure your aira2, we suggest you use a secret"
+msgstr ""
+
+#: tformsettings.label1.caption
+msgid "RPC listen port"
+msgstr ""
+
+#: tformsettings.label2.caption
+msgid "RPC secret(Optional)"
+msgstr ""
+
+#: tformsettings.label3.caption
+msgid "UA presets"
+msgstr ""
+
+#: tformsettings.label4.caption
+msgid "BT Trackers(One URL per line)"
+msgstr ""
+
+#: tformsettings.tabsheet1.caption
+msgid "PRC"
+msgstr ""
+
+#: tformsettings.tabsheet2.caption
+msgid "Download"
+msgstr ""
+
+#: tformsettings.tabsheet3.caption
+msgid "Trackers"
+msgstr ""
+
+#: unitresourcestring.caption1
+msgid "Some text"
+msgstr ""
+
+#: unitresourcestring.downloadactive
+msgid "Downloading"
+msgstr ""
+
+#: unitresourcestring.downloadstopped
+msgid "Stopped"
+msgstr ""
+
+#: unitresourcestring.downloadwaiting
+msgid "Waiting"
+msgstr ""
+
+#: unitresourcestring.helloworld1
+msgid "Hello World"
+msgstr ""
+
+#: unitresourcestring.pleaserestartapplication
+msgid "You probably need to restart this application manually"
+msgstr ""
+
+#: unitresourcestring.texterror
+msgid "Error"
+msgstr ""
+
+#: unitresourcestring.waitingtasknum
+msgid "Waiting task:"
+msgstr ""
+

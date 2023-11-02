@@ -1,64 +1,72 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: tformmain.btnnewtask.caption
 msgid "New Task"
-msgstr ""
+msgstr "新建任务"
 
 #: tformmain.btnpauseall.caption
 msgid "Pause all"
-msgstr ""
+msgstr "暂停全部"
 
 #: tformmain.btnsettings.caption
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: tformmain.btnunpauseall.caption
 msgid "Resume all"
-msgstr ""
+msgstr "恢复"
 
 #: tformmain.caption
-msgctxt "tformmain.caption"
-msgid "FormMain"
+msgid "ifloppy/Naria"
 msgstr ""
 
 #: tformmain.ckbrefreshtasklist.caption
 msgid "Refresh download task list"
-msgstr ""
+msgstr "刷新下载任务列表"
 
 #: tformmain.listview1.columns[0].caption
 msgid "gid"
 msgstr ""
 
 #: tformmain.listview1.columns[1].caption
-msgctxt "tformmain.listview1.columns[1].caption"
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: tformmain.listview1.columns[2].caption
 msgid "Downloaded size"
-msgstr ""
+msgstr "已下载大小"
 
 #: tformmain.listview1.columns[3].caption
 msgid "Total size"
-msgstr ""
+msgstr "总大小"
 
 #: tformmain.listview1.columns[4].caption
 msgid "Progress"
-msgstr ""
+msgstr "进度"
 
 #: tformmain.listview1.columns[5].caption
 msgid "Uploaded size"
-msgstr ""
+msgstr "已上传大小"
 
 #: tformmain.listview1.columns[6].caption
 msgctxt "tformmain.listview1.columns[6].caption"
 msgid "Download speed"
-msgstr ""
+msgstr "下载速度"
 
 #: tformmain.listview1.columns[7].caption
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: tformmain.listview1.columns[8].caption
 msgctxt "tformmain.listview1.columns[8].caption"
@@ -66,133 +74,128 @@ msgid "URL"
 msgstr ""
 
 #: tformmain.mnitaskcopyurl.caption
-msgctxt "tformmain.mnitaskcopyurl.caption"
 msgid "Copy URL"
-msgstr ""
+msgstr "复制连接"
 
 #: tformmain.mnitaskdelete.caption
-msgctxt "tformmain.mnitaskdelete.caption"
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: tformmain.mnitaskpause.caption
-msgctxt "tformmain.mnitaskpause.caption"
 msgid "Pause"
-msgstr ""
+msgstr "暂停"
 
 #: tformmain.mnitaskresume.caption
-msgctxt "tformmain.mnitaskresume.caption"
 msgid "Resume"
-msgstr ""
+msgstr "恢复"
 
 #: tformmain.sb.panels[0].text
 msgctxt "tformmain.sb.panels[0].text"
 msgid "Download speed"
-msgstr ""
+msgstr "下载速度"
 
 #: tformmain.sb.panels[1].text
 msgid "Upload speed"
-msgstr ""
+msgstr "上传速度"
 
 #: tformmain.sb.panels[2].text
 msgid "Waiting num"
-msgstr ""
+msgstr "等待中的数量"
 
 #: tformnewtask.btnbrowsetorrent.caption
 msgid "Browse"
-msgstr ""
+msgstr "浏览"
 
 #: tformnewtask.btncancel.caption
 msgctxt "tformnewtask.btncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tformnewtask.btnstart.caption
 msgid "Start"
-msgstr ""
+msgstr "开始"
 
 #: tformnewtask.caption
 msgid "New Download Task"
-msgstr ""
+msgstr "新建下载任务"
 
 #: tformnewtask.edtdownloadurl.editlabel.caption
 msgid "Download URL"
-msgstr ""
+msgstr "下载URL"
 
 #: tformnewtask.edttorrentpath.editlabel.caption
 msgid "Torrent file"
-msgstr ""
+msgstr "种子文件"
 
 #: tformnewtask.opendialog1.title
 msgid "Open a torrent"
-msgstr ""
+msgstr "打开一个种子"
 
 #: tformnewtask.tabsheet1.caption
 msgctxt "tformnewtask.tabsheet1.caption"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: tformnewtask.tabsheet2.caption
 msgid "Torrent"
-msgstr ""
+msgstr "种子"
 
 #: tformsettings.btncancel.caption
 msgctxt "tformsettings.btncancel.caption"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: tformsettings.btndownloadpathbrowse.caption
 msgid "Browse..."
-msgstr ""
+msgstr "浏览..."
 
 #: tformsettings.btnok.caption
 msgid "OK"
-msgstr ""
+msgstr "确认"
 
 #: tformsettings.btnupdatetrackersfromurl.caption
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
 #: tformsettings.caption
 msgid "Aria2 Settings"
-msgstr ""
+msgstr "Aria2设置"
 
 #: tformsettings.ckblistenall.caption
 msgid "Listen RPC requests on all network interfaces"
-msgstr ""
+msgstr "在所有网络上监听RPC请求"
 
 #: tformsettings.edtdownloadpath.editlabel.caption
 msgid "Default path"
-msgstr ""
+msgstr "默认下载路径"
 
 #: tformsettings.edtdownloadua.editlabel.caption
 msgid "Default User-agemt"
-msgstr ""
+msgstr "默认User-Agent"
 
 #: tformsettings.edtdownloadua.texthint
 msgid "\"aria2/$VERSION\" if there is empty"
-msgstr ""
+msgstr "若为空则使用\"aria2/$VERSION\""
 
 #: tformsettings.edtrpcpassword.texthint
-msgctxt "tformsettings.edtrpcpassword.texthint"
 msgid "For secure your aira2, we suggest you use a secret"
-msgstr ""
+msgstr "为了保障你的Aria2的安全，我们建议你使用一个密钥"
 
 #: tformsettings.label1.caption
-msgid "PRC listen port"
-msgstr ""
+msgid "RPC listen port"
+msgstr "RPC监听端口"
 
 #: tformsettings.label2.caption
-msgid "PRC secret(Optional)"
-msgstr ""
+msgid "RPC secret(Optional)"
+msgstr "RPC密钥（可选）"
 
 #: tformsettings.label3.caption
 msgid "UA presets"
-msgstr ""
+msgstr "预设的UA"
 
 #: tformsettings.label4.caption
 msgid "BT Trackers(One URL per line)"
-msgstr ""
+msgstr "BT Tracker（一行一个）"
 
 #: tformsettings.tabsheet1.caption
 msgid "PRC"
@@ -200,7 +203,7 @@ msgstr ""
 
 #: tformsettings.tabsheet2.caption
 msgid "Download"
-msgstr ""
+msgstr "下载"
 
 #: tformsettings.tabsheet3.caption
 msgid "Trackers"
@@ -212,15 +215,15 @@ msgstr ""
 
 #: unitresourcestring.downloadactive
 msgid "Downloading"
-msgstr ""
+msgstr "下载中"
 
 #: unitresourcestring.downloadstopped
 msgid "Stopped"
-msgstr ""
+msgstr "已停止"
 
 #: unitresourcestring.downloadwaiting
 msgid "Waiting"
-msgstr ""
+msgstr "等待中"
 
 #: unitresourcestring.helloworld1
 msgid "Hello World"
@@ -228,13 +231,15 @@ msgstr ""
 
 #: unitresourcestring.pleaserestartapplication
 msgid "You probably need to restart this application manually"
-msgstr ""
+msgstr "你可能需要在这之后手动重启应用程序"
 
 #: unitresourcestring.texterror
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 #: unitresourcestring.waitingtasknum
 msgid "Waiting task:"
-msgstr ""
+msgstr "等待中的任务："
 
+#~ msgid "FormMain"
+#~ msgstr "主窗口"

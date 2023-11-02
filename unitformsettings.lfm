@@ -47,14 +47,14 @@ object FormSettings: TFormSettings
         Height = 17
         Top = 104
         Width = 120
-        Caption = 'PRC secret(Optional)'
+        Caption = 'RPC secret(Optional)'
       end
       object Label1: TLabel
         Left = 8
         Height = 17
         Top = 48
         Width = 86
-        Caption = 'PRC listen port'
+        Caption = 'RPC listen port'
       end
       object speRPCPort: TSpinEdit
         Left = 8
