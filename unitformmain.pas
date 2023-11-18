@@ -90,12 +90,9 @@ end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  btnPauseAllClick(nil);
   client.Call('aria2.shutdown', [AriaParamToken], 0);
-  Sleep(200);
-  client.Call('aria2.forceShutdown', [AriaParamToken], 0);
-  while AriaProcessManager.isRunning() do begin
-    Sleep(200);
-  end;
+  client.Call('aria2.saveSession', [AriaParamToken], 0);
   AriaProcessManager.Free;
 
   ActiveTaskStatusList.Free;
@@ -249,8 +246,7 @@ begin
         Result[4] := ('N/A')
       else
         Result[4] :=
-          (FloatToStrF(lengthCompleted / lengthTotal * 100, ffGeneral,
-          5, 2) + '%');
+          (Format('%.2f', [lengthCompleted / lengthTotal * 100]))+'%';
       Result[5] :=
         FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
       Result[6] :=
@@ -351,7 +347,6 @@ begin
       SingleListItemObject := ListView1.Items[i];
       //per column of this line
       SingleListItemObject.Caption := VirtualListView[i][0];
-      //ShowMessage('Subitems:'+IntTOsTr(SingleListItemObject.SubItems.Count)) ;
       for ii := 1 to pred(Length(VirtualListView[i])) do
       begin
 
