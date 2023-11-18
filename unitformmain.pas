@@ -91,9 +91,11 @@ end;
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   client.Call('aria2.shutdown', [AriaParamToken], 0);
-  Sleep(500);
+  Sleep(200);
   client.Call('aria2.forceShutdown', [AriaParamToken], 0);
-  Sleep(100);
+  while AriaProcessManager.isRunning() do begin
+    Sleep(200);
+  end;
   AriaProcessManager.Free;
 
   ActiveTaskStatusList.Free;

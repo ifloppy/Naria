@@ -23,6 +23,7 @@ type
   public
     procedure Execute();
     procedure LoadConfig();
+    function isRunning(): boolean;
     constructor Create;
     destructor Destroy; override;
   end;
@@ -90,6 +91,11 @@ begin
 
 
   AriaParamToken:='token:'+GlobalConfig.ReadString('RPC', 'Secret', '')
+end;
+
+function TAriaProcessManager.isRunning(): boolean;
+begin
+  Result:=ProcessInstance.Running;
 end;
 
 function FileSizeToHumanReadableString(FileSize: int64): string;
