@@ -21,7 +21,11 @@ interface
   DownloadActive = 'Downloading';
   DownloadWaiting = 'Waiting';
 
-
+  //Tracker Management
+  AddTrackerSourceInput = 'Add source';
+  AddTrackerSourceInputPrompt = 'Please input your tracker source URL';
+  EditTrackerSourceInput = 'Edit source';
+  EditTrackerSourceInputPrompt = 'Please input your new tracker source URL';
 implementation
 
 end.

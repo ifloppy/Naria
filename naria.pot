@@ -68,6 +68,7 @@ msgid "Copy URL"
 msgstr ""
 
 #: tformmain.mnitaskdelete.caption
+msgctxt "tformmain.mnitaskdelete.caption"
 msgid "Delete"
 msgstr ""
 
@@ -140,11 +141,16 @@ msgid "Browse..."
 msgstr ""
 
 #: tformsettings.btnok.caption
+msgctxt "tformsettings.btnok.caption"
 msgid "OK"
 msgstr ""
 
+#: tformsettings.btntrackersourcemanage.caption
+msgid "Sources"
+msgstr ""
+
 #: tformsettings.btnupdatetrackersfromurl.caption
-msgid "Sync"
+msgid "Update"
 msgstr ""
 
 #: tformsettings.caption
@@ -199,6 +205,49 @@ msgstr ""
 msgid "Trackers"
 msgstr ""
 
+#: tformtrackersource.btnadd.caption
+msgid "Add"
+msgstr ""
+
+#: tformtrackersource.btncancel.caption
+msgctxt "tformtrackersource.btncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformtrackersource.btndelete.caption
+msgctxt "tformtrackersource.btndelete.caption"
+msgid "Delete"
+msgstr ""
+
+#: tformtrackersource.btnedit.caption
+msgid "Edit"
+msgstr ""
+
+#: tformtrackersource.btnok.caption
+msgctxt "tformtrackersource.btnok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformtrackersource.caption
+msgid " "
+msgstr ""
+
+#: tformtrackersource.label1.caption
+msgid "Current tracker sources list"
+msgstr ""
+
+#: tformtrackersource.label2.caption
+msgid "Add presets"
+msgstr ""
+
+#: unitresourcestring.addtrackersourceinput
+msgid "Add source"
+msgstr ""
+
+#: unitresourcestring.addtrackersourceinputprompt
+msgid "Please input your tracker source URL"
+msgstr ""
+
 #: unitresourcestring.caption1
 msgid "Some text"
 msgstr ""
@@ -213,6 +262,14 @@ msgstr ""
 
 #: unitresourcestring.downloadwaiting
 msgid "Waiting"
+msgstr ""
+
+#: unitresourcestring.edittrackersourceinput
+msgid "Edit source"
+msgstr ""
+
+#: unitresourcestring.edittrackersourceinputprompt
+msgid "Please input your new tracker source URL"
 msgstr ""
 
 #: unitresourcestring.helloworld1

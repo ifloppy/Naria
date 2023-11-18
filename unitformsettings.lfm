@@ -1,18 +1,19 @@
 object FormSettings: TFormSettings
-  Left = 396
-  Height = 326
-  Top = 185
-  Width = 464
+  Left = 399
+  Height = 316
+  Top = 205
+  Width = 473
+  BorderIcons = [biSystemMenu, biMaximize]
   Caption = 'Aria2 Settings'
-  ClientHeight = 326
-  ClientWidth = 464
+  ClientHeight = 316
+  ClientWidth = 473
   LCLVersion = '3.99.0.0'
   OnClose = FormClose
   OnCreate = FormCreate
   object btnOK: TButton
-    Left = 376
+    Left = 385
     Height = 25
-    Top = 293
+    Top = 283
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'OK'
@@ -20,9 +21,9 @@ object FormSettings: TFormSettings
     OnClick = btnOKClick
   end
   object btnCancel: TButton
-    Left = 299
+    Left = 308
     Height = 25
-    Top = 293
+    Top = 283
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
@@ -31,17 +32,17 @@ object FormSettings: TFormSettings
   end
   object PageControl1: TPageControl
     Left = 0
-    Height = 293
+    Height = 283
     Top = 0
-    Width = 464
-    ActivePage = TabSheet2
+    Width = 473
+    ActivePage = TabSheet3
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'PRC'
-      ClientHeight = 263
-      ClientWidth = 456
+      ClientHeight = 253
+      ClientWidth = 465
       object Label2: TLabel
         Left = 8
         Height = 17
@@ -78,7 +79,7 @@ object FormSettings: TFormSettings
         Left = 8
         Height = 25
         Top = 126
-        Width = 443
+        Width = 452
         Anchors = [akTop, akLeft, akRight]
         TabOrder = 2
         TextHint = 'For secure your aira2, we suggest you use a secret'
@@ -86,16 +87,16 @@ object FormSettings: TFormSettings
     end
     object TabSheet2: TTabSheet
       Caption = 'Download'
-      ClientHeight = 263
-      ClientWidth = 456
+      ClientHeight = 253
+      ClientWidth = 465
       object edtDownloadPath: TLabeledEdit
         Left = 8
         Height = 25
         Top = 32
-        Width = 363
+        Width = 372
         Anchors = [akTop, akLeft, akRight]
         EditLabel.Height = 17
-        EditLabel.Width = 363
+        EditLabel.Width = 372
         EditLabel.Caption = 'Default path'
         TabOrder = 0
       end
@@ -103,16 +104,16 @@ object FormSettings: TFormSettings
         Left = 8
         Height = 25
         Top = 80
-        Width = 443
+        Width = 452
         Anchors = [akTop, akLeft, akRight]
         EditLabel.Height = 17
-        EditLabel.Width = 443
+        EditLabel.Width = 452
         EditLabel.Caption = 'Default User-agemt'
         TabOrder = 1
         TextHint = '"aria2/$VERSION" if there is empty'
       end
       object btnDownloadPathBrowse: TButton
-        Left = 376
+        Left = 385
         Height = 25
         Top = 31
         Width = 75
@@ -132,7 +133,7 @@ object FormSettings: TFormSettings
         Left = 80
         Height = 25
         Top = 109
-        Width = 367
+        Width = 376
         Anchors = [akTop, akLeft, akRight]
         ItemHeight = 17
         Items.Strings = (
@@ -150,13 +151,13 @@ object FormSettings: TFormSettings
     end
     object TabSheet3: TTabSheet
       Caption = 'Trackers'
-      ClientHeight = 263
-      ClientWidth = 456
+      ClientHeight = 253
+      ClientWidth = 465
       object memoTracker: TMemo
         Left = 8
-        Height = 188
+        Height = 178
         Top = 32
-        Width = 438
+        Width = 447
         Anchors = [akTop, akLeft, akRight, akBottom]
         ScrollBars = ssAutoBoth
         TabOrder = 0
@@ -171,20 +172,23 @@ object FormSettings: TFormSettings
       object btnUpdateTrackersFromURL: TButton
         Left = 8
         Height = 25
-        Top = 232
+        Top = 222
         Width = 75
         Anchors = [akLeft, akBottom]
-        Caption = 'Sync'
+        Caption = 'Update'
         TabOrder = 1
         OnClick = btnUpdateTrackersFromURLClick
       end
-      object edtUpdateTrackersURL: TEdit
+      object btnTrackerSourceManage: TButton
+        AnchorSideLeft.Side = asrBottom
         Left = 88
         Height = 25
-        Top = 235
-        Width = 360
-        Anchors = [akLeft, akRight, akBottom]
+        Top = 222
+        Width = 75
+        Anchors = [akLeft, akBottom]
+        Caption = 'Sources'
         TabOrder = 2
+        OnClick = btnTrackerSourceManageClick
       end
     end
   end

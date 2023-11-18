@@ -15,5 +15,6 @@
 {"hash":126422979,"name":"tformsettings.label3.caption","sourcebytes":[85,65,32,112,114,101,115,101,116,115],"value":"UA presets"},
 {"hash":142219555,"name":"tformsettings.tabsheet3.caption","sourcebytes":[84,114,97,99,107,101,114,115],"value":"Trackers"},
 {"hash":1559753,"name":"tformsettings.label4.caption","sourcebytes":[66,84,32,84,114,97,99,107,101,114,115,40,79,110,101,32,85,82,76,32,112,101,114,32,108,105,110,101,41],"value":"BT Trackers(One URL per line)"},
-{"hash":372803,"name":"tformsettings.btnupdatetrackersfromurl.caption","sourcebytes":[83,121,110,99],"value":"Sync"}
+{"hash":96905381,"name":"tformsettings.btnupdatetrackersfromurl.caption","sourcebytes":[85,112,100,97,116,101],"value":"Update"},
+{"hash":174885267,"name":"tformsettings.btntrackersourcemanage.caption","sourcebytes":[83,111,117,114,99,101,115],"value":"Sources"}
 ]}

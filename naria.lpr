@@ -12,7 +12,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, unitformmain, unitformsettings, unitcommon, IniFiles,
   unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator,
-  LazFileUtils
+  LazFileUtils, unitformtrackersource
   { you can add units after this };
 
 {$R *.res}
@@ -35,7 +35,6 @@ begin
   AriaProcessManager:=TAriaProcessManager.Create;
   AriaProcessManager.Execute();
   Application.CreateForm(TFormMain, FormMain);
-  Application.CreateForm(TFormNewTask, FormNewTask);
   Application.Run;
 
   GlobalConfig.Free;

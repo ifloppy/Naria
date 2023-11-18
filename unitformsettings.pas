@@ -17,9 +17,9 @@ type
     btnCancel: TButton;
     btnDownloadPathBrowse: TButton;
     btnUpdateTrackersFromURL: TButton;
+    btnTrackerSourceManage: TButton;
     ckbListenAll: TCheckBox;
     cbxUAPresets: TComboBox;
-    edtUpdateTrackersURL: TEdit;
     edtRPCPassword: TEdit;
     Label1: TLabel;
     Label2: TLabel;
@@ -37,6 +37,7 @@ type
     procedure btnCancelClick(Sender: TObject);
     procedure btnDownloadPathBrowseClick(Sender: TObject);
     procedure btnOKClick(Sender: TObject);
+    procedure btnTrackerSourceManageClick(Sender: TObject);
     procedure btnUpdateTrackersFromURLClick(Sender: TObject);
     procedure cbxUAPresetsChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -53,7 +54,7 @@ var
 
 implementation
 
-uses unitcommon;
+uses unitcommon, unitformtrackersource;
 
   {$R *.lfm}
 
@@ -63,7 +64,8 @@ procedure TFormSettings.btnOKClick(Sender: TObject);
 var
   tmp: string;
 begin
-  if not DirectoryExists(edtDownloadPath.Text) then begin
+  if not DirectoryExists(edtDownloadPath.Text) then
+  begin
     ShowMessage(RequireDefaultDownloadPath);
     exit;
   end;
@@ -83,16 +85,27 @@ begin
   end;
 
 
-  GlobalConfig.WriteString('BT', 'TrackerSyncServer', edtUpdateTrackersURL.Text);
+  //GlobalConfig.WriteString('BT', 'TrackerSyncServer', edtUpdateTrackersURL.Text);
   Close;
+end;
+
+procedure TFormSettings.btnTrackerSourceManageClick(Sender: TObject);
+var
+  tmp: TFormTrackerSource;
+begin
+  tmp := TFormTrackerSource.Create(Self);
+  tmp.ShowModal;
+  tmp.Free;
 end;
 
 procedure TFormSettings.btnUpdateTrackersFromURLClick(Sender: TObject);
 var
   httpclient: TFPHTTPClient;
   r: string;
+  SourceURLs: TStrings;
+  i: uint8;
 begin
-  if edtUpdateTrackersURL.Text = '' then exit;
+  {if edtUpdateTrackersURL.Text = '' then exit;
   httpclient := TFPHTTPClient.Create(nil);
   try
     r := httpclient.Get(edtUpdateTrackersURL.Text);
@@ -102,6 +115,26 @@ begin
     memoTracker.Text := StringReplace(memoTracker.Lines.Text,
       LineEnding + LineEnding, LineEnding, [rfReplaceAll]);
   end;
+  httpclient.Free;}
+  r := GlobalConfig.ReadString('BT', 'Sources', '');
+  if r = '' then exit;
+  httpclient := TFPHTTPClient.Create(nil);
+  SourceURLs := TStringList.Create();
+  SourceURLs.Text := StringReplace(r, ',', LineEnding, [rfReplaceAll]);
+  memoTracker.Lines.Text := '';
+  for i := 0 to pred(SourceURLs.Count) do
+  begin
+    try
+      r := httpclient.Get(SourceURLs[i]);
+
+    finally
+      memoTracker.Lines.Text:=memoTracker.Lines.Text+r;
+
+    end;
+  end;
+  memoTracker.Text := StringReplace(memoTracker.Lines.Text,
+      LineEnding + LineEnding, LineEnding, [rfReplaceAll]);
+  SourceURLs.Free;
   httpclient.Free;
 end;
 
@@ -140,8 +173,9 @@ begin
   edtDownloadUA.Text := GlobalConfig.ReadString('Download', 'User-Agent', '');
   memoTracker.Lines.Text := StringReplace(GlobalConfig.ReadString('BT', 'Tracker', ''),
     ',', LineEnding, [rfReplaceAll]);
-  edtUpdateTrackersURL.Text := GlobalConfig.ReadString('BT', 'TrackerSyncServer',
-    'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt');
+  {edtUpdateTrackersURL.Text :=
+    GlobalConfig.ReadString('BT', 'TrackerSyncServer',
+    'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt');}
 
 end;
 
