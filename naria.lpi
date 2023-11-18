@@ -193,6 +193,7 @@
         <Filename Value="unitformtrackersource.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormTrackerSource"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

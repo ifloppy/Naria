@@ -3,15 +3,14 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <ManyBuildModesSelection Value="Release_Windows_x86_64"/>
-    <BuildModes Active="Debug"/>
+    <ManyBuildModesSelection Value="Release_Windows_x86_64,Release_Linux_x86_64"/>
+    <BuildModes Active="Release_Linux_x86_64"/>
     <Units>
       <Unit>
         <Filename Value="naria.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="3"/>
-        <CursorPos X="42" Y="26"/>
+        <EditorIndex Value="12"/>
+        <CursorPos X="18" Y="11"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit>
@@ -33,10 +32,9 @@
         <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="100"/>
-        <CursorPos X="60" Y="136"/>
+        <TopLine Value="4"/>
+        <CursorPos X="42" Y="119"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -45,15 +43,15 @@
         <Filename Value="unitcommon.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="96"/>
-        <CursorPos X="25" Y="126"/>
+        <TopLine Value="10"/>
+        <CursorPos X="42" Y="46"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitresourcestring.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="38" Y="20"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
@@ -68,6 +66,19 @@
         <TopLine Value="28"/>
         <CursorPos X="10" Y="28"/>
         <UsageCount Value="56"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unitformtrackersource.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTrackerSource"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="45"/>
+        <CursorPos X="3" Y="71"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -208,18 +219,6 @@
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unitformtrackersource.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormTrackerSource"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="45"/>
-        <CursorPos X="3" Y="71"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <EditorIndex Value="8"/>
@@ -235,24 +234,18 @@
         <CursorPos X="3" Y="765"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lmessages.pp"/>
+        <UnitName Value="LMessages"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="11"/>
+        <CursorPos X="3" Y="31"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unitformtrackersource.pas"/>
-        <Caret Line="43" Column="3" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformsettings.pas"/>
-        <Caret Line="71" Column="3" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformtrackersource.pas"/>
-        <Caret Line="59" Column="37" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformtrackersource.pas"/>
-        <Caret Line="58" Column="36" TopLine="25"/>
-      </Position>
       <Position>
         <Filename Value="unitformtrackersource.pas"/>
         <Caret Line="54" Column="54" TopLine="35"/>
@@ -356,6 +349,22 @@
       <Position>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\objpas\classes\classesh.inc"/>
         <Caret Line="985" Column="14" TopLine="964"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="46" Column="42" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lmessages.pp"/>
+        <Caret Line="31" Column="3" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lmessages.pp"/>
+        <Caret Line="35" Column="5"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lmessages.pp"/>
+        <Caret Line="31" Column="3" TopLine="11"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -43,7 +43,7 @@ constructor TAriaProcessManager.Create;
 begin
   Self.ProcessInstance := TAsyncProcess.Create(nil);
   ProcessInstance.Executable := GetCurrentDir + '/' + ariaExecutable;
-  ProcessInstance.Options := [];
+  ProcessInstance.Options := [poNoConsole];
   LoadConfig();
 end;
 

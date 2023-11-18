@@ -78,6 +78,7 @@ msgid "Copy URL"
 msgstr "复制连接"
 
 #: tformmain.mnitaskdelete.caption
+msgctxt "tformmain.mnitaskdelete.caption"
 msgid "Delete"
 msgstr "删除"
 
@@ -150,12 +151,17 @@ msgid "Browse..."
 msgstr "浏览..."
 
 #: tformsettings.btnok.caption
+msgctxt "tformsettings.btnok.caption"
 msgid "OK"
 msgstr "确认"
 
+#: tformsettings.btntrackersourcemanage.caption
+msgid "Sources"
+msgstr "源"
+
 #: tformsettings.btnupdatetrackersfromurl.caption
-msgid "Sync"
-msgstr "同步"
+msgid "Update"
+msgstr "更新"
 
 #: tformsettings.caption
 msgid "Aria2 Settings"
@@ -209,6 +215,49 @@ msgstr "下载"
 msgid "Trackers"
 msgstr ""
 
+#: tformtrackersource.btnadd.caption
+msgid "Add"
+msgstr "添加"
+
+#: tformtrackersource.btncancel.caption
+msgctxt "tformtrackersource.btncancel.caption"
+msgid "Cancel"
+msgstr "取消"
+
+#: tformtrackersource.btndelete.caption
+msgctxt "tformtrackersource.btndelete.caption"
+msgid "Delete"
+msgstr "删除"
+
+#: tformtrackersource.btnedit.caption
+msgid "Edit"
+msgstr "编辑"
+
+#: tformtrackersource.btnok.caption
+msgctxt "tformtrackersource.btnok.caption"
+msgid "OK"
+msgstr "确认"
+
+#: tformtrackersource.caption
+msgid " "
+msgstr ""
+
+#: tformtrackersource.label1.caption
+msgid "Current tracker sources list"
+msgstr "当前Tracker源列表"
+
+#: tformtrackersource.label2.caption
+msgid "Add presets"
+msgstr "添加预设选项"
+
+#: unitresourcestring.addtrackersourceinput
+msgid "Add source"
+msgstr "添加源"
+
+#: unitresourcestring.addtrackersourceinputprompt
+msgid "Please input your tracker source URL"
+msgstr "清输入你的Tracker源的URL"
+
 #: unitresourcestring.caption1
 msgid "Some text"
 msgstr ""
@@ -225,9 +274,17 @@ msgstr "已停止"
 msgid "Waiting"
 msgstr "等待中"
 
+#: unitresourcestring.edittrackersourceinput
+msgid "Edit source"
+msgstr "编辑源"
+
+#: unitresourcestring.edittrackersourceinputprompt
+msgid "Please input your new tracker source URL"
+msgstr "清输入你的新的Tracker源的URL"
+
 #: unitresourcestring.helloworld1
 msgid "Hello World"
-msgstr ""
+msgstr "操你妈这个该死的世界"
 
 #: unitresourcestring.pleaserestartapplication
 msgid "You probably need to restart this application manually"
@@ -244,6 +301,9 @@ msgstr "错误"
 #: unitresourcestring.waitingtasknum
 msgid "Waiting task:"
 msgstr "等待中的任务："
+
+#~ msgid "Sync"
+#~ msgstr "同步"
 
 #~ msgid "FormMain"
 #~ msgstr "主窗口"
