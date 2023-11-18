@@ -14,6 +14,8 @@ const
   ariaExecutable = 'aria2c';
   {$EndIf}
 
+  Units: array[0..8] of string = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+
 type
   TAriaProcessManager = class
   private
@@ -78,7 +80,8 @@ begin
   ProcessInstance.Parameters.Add('--input-file='+GetCurrentDir+'/download.session');
   ProcessInstance.Parameters.Add('--save-session='+GetCurrentDir+'/download.session');
   ProcessInstance.Parameters.Add('--rpc-allow-origin-all=true');
-  ProcessInstance.Parameters.Add('--max-concurrent-downloads=16');
+  ProcessInstance.Parameters.Add('--max-concurrent-downloads=64');
+  ProcessInstance.Parameters.Add('--max-connection-per-server=64');
 
   tmp:=GlobalConfig.ReadString('BT', 'Tracker', '');
   if tmp <> '' then begin
@@ -90,13 +93,23 @@ begin
 end;
 
 function FileSizeToHumanReadableString(FileSize: int64): string;
+var
+  i: integer; // 定义一个整数变量，用于循环遍历单位数组
+  f: double; // 定义一个双精度浮点变量，用于存储转换后的文件大小
 begin
-  if FileSize >= 1024*1024*1024 then
-    Result := FloatToStrF(FileSize/(1024*1024*1024), ffFixed, 15, 2) + ' GB'
-  else if FileSize >= 1024*1024 then
-    Result := FloatToStrF(FileSize/(1024*1024), ffFixed, 15, 2) + ' MB'
-  else
-    Result := IntToStr(FileSize) + ' bytes';
+  // 初始化变量
+  i := 0;
+  f := FileSize;
+
+  // 循环遍历单位数组，直到找到合适的单位或达到数组的最大索引
+  while (f >= 1024) and (i < High(Units)) do
+  begin
+    f := f / 1024; // 将文件大小除以1024，得到下一个单位的文件大小
+    i := i + 1; // 将单位数组的索引加一
+  end;
+
+  // 返回转换后的文件大小和单位，保留两位小数
+  Result := Format('%.2f %s', [f, Units[i]]);
 end;
 
 
