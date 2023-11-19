@@ -87,6 +87,7 @@ begin
   ProcessInstance.Parameters.Add('--max-connection-per-server=64');
   ProcessInstance.Parameters.Add('--min-split-size=1M');
   ProcessInstance.Parameters.Add('--split=64');
+  ProcessInstance.Parameters.Add('--check-certificate=false');
 
   tmp := GlobalConfig.ReadString('BT', 'Tracker', '');
   if tmp <> '' then
