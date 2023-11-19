@@ -302,7 +302,7 @@ begin
     for i := 0 to WaitingTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := WaitingTaskStatusList.Objects[i];
-      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
+      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadWaiting);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
@@ -311,7 +311,7 @@ begin
     for i := 0 to StoppedTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := StoppedTaskStatusList.Objects[i];
-      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
+      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadStopped);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
