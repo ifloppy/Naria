@@ -61,7 +61,7 @@ var
 begin
   if ListTrackerSources.ItemIndex = -1 then exit;
   tmp:=InputBox(EditTrackerSourceInput, EditTrackerSourceInputPrompt, ListTrackerSources.GetSelectedText);
-  if tmp <> '' then ListTrackerSources.Items.Add(tmp);
+  if tmp <> '' then ListTrackerSources.Items[ListTrackerSources.ItemIndex]:=(tmp);
 end;
 
 procedure TFormTrackerSource.btnOKClick(Sender: TObject);
@@ -78,7 +78,7 @@ var
   tmp: string;
 begin
   tmp:=InputBox(AddTrackerSourceInput, AddTrackerSourceInputPrompt, '');
-  if tmp <> '' then ListTrackerSources.Items[ListTrackerSources.ItemIndex]:=(tmp);
+  if tmp <> '' then ListTrackerSources.Items.Add(tmp);
 end;
 
 procedure TFormTrackerSource.cbxPresetChange(Sender: TObject);
