@@ -149,6 +149,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="uniqueinstance_package"/>
+      </Item>
+      <Item>
         <PackageName Value="CeosMW"/>
       </Item>
       <Item>

@@ -9,6 +9,9 @@ interface
   HelloWorld1 = 'Hello World';
   WaitingTaskNum = 'Waiting task:';
 
+  //System
+  AnotherInstance = 'You have already run another instance of Naria';
+
   //Settings
   RequireDefaultDownloadPath = 'An available default path is required';
 

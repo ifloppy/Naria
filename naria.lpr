@@ -12,7 +12,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, unitformmain, unitformsettings, unitcommon, IniFiles,
   unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator,
-  LazFileUtils, unitformtrackersource
+  LazFileUtils, unitformtrackersource, UniqueInstanceRaw, Dialogs, unitresourcestring
   { you can add units after this };
 
 {$R *.res}
@@ -21,6 +21,10 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
+  if InstanceRunning then begin
+    ShowMessage(AnotherInstance);
+    Application.Terminate;
+  end;
   GlobalConfig:=TIniFile.Create('config.ini');
   if not FileExistsUTF8('download.session') then begin
     FileCreateUTF8('download.session');
