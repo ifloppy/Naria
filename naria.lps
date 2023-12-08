@@ -9,10 +9,9 @@
       <Unit>
         <Filename Value="naria.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="18"/>
-        <CursorPos X="14" Y="44"/>
+        <CursorPos X="65" Y="33"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit>
@@ -22,8 +21,9 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="103"/>
-        <CursorPos X="94" Y="105"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="197"/>
+        <CursorPos X="42" Y="219"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,25 +34,23 @@
         <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="57"/>
         <CursorPos X="47" Y="82"/>
         <UsageCount Value="64"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitcommon.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
-        <CursorPos Y="140"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="80" Y="16"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitresourcestring.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="3"/>
         <CursorPos X="10" Y="5"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
@@ -63,12 +61,10 @@
         <ComponentName Value="FormNewTask"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="28"/>
         <UsageCount Value="59"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitformtrackersource.pas"/>
@@ -76,7 +72,7 @@
         <ComponentName Value="FormTrackerSource"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="45"/>
         <CursorPos X="5" Y="56"/>
         <UsageCount Value="25"/>
@@ -98,11 +94,10 @@
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="964"/>
         <CursorPos X="14" Y="985"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\objpas\classes\stringl.inc"/>
@@ -168,11 +163,10 @@
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="21" Y="234"/>
         <UsageCount Value="15"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-process\src\processbody.inc"/>
@@ -212,20 +206,18 @@
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="30" Y="64"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="609"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="582"/>
         <CursorPos X="15" Y="629"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\customlistbox.inc"/>
@@ -237,11 +229,10 @@
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lmessages.pp"/>
         <UnitName Value="LMessages"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="3" Y="31"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\winunits-jedi\src\jwawindows.pas"/>
@@ -252,18 +243,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="unitcommon.pas"/>
-        <Caret Line="58" Column="43" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="unitcommon.pas"/>
-        <Caret Line="57" Column="12" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="219" Column="27" TopLine="215"/>
-      </Position>
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="221" Column="6" TopLine="188"/>
@@ -371,6 +350,18 @@
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="279" Column="14" TopLine="247"/>
+      </Position>
+      <Position>
+        <Filename Value="unitresourcestring.pas"/>
+        <Caret Line="5" Column="10"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="137" Column="12" TopLine="126"/>
+      </Position>
+      <Position>
+        <Filename Value="unitformmain.pas"/>
+        <Caret Line="273" Column="26" TopLine="266"/>
       </Position>
     </JumpHistory>
     <RunParams>

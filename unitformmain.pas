@@ -102,7 +102,8 @@ end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
-  client.Host:='http://127.0.0.1:'+GlobalConfig.ReadString('RPC', 'port', '6800')+'/jsonrpc';
+  client.Host := 'http://127.0.0.1:' + GlobalConfig.ReadString('RPC',
+    'port', '6800') + '/jsonrpc';
 end;
 
 procedure TFormMain.ListView1ContextPopup(Sender: TObject; MousePos: TPoint;
@@ -200,58 +201,70 @@ var
   resp: TJSONObject;
   Result: TJSONObject;
 begin
-  r := client.Call('aria2.getGlobalStat', [AriaParamToken], 1);
-  resp := GetJSON(r, False) as TJSONObject;
-  Result := resp.Objects['result'].Clone as TJSONObject;
-  resp.Free;
+  try
+    r := client.Call('aria2.getGlobalStat', [AriaParamToken], 1);
+    resp := GetJSON(r, False) as TJSONObject;
+    Result := resp.Objects['result'].Clone as TJSONObject;
+    resp.Free;
 
-  sb.Panels.Items[0].Text := '↓ ' + Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['downloadSpeed'])) +
-    '/s';
-  sb.Panels.Items[1].Text := '↑ ' + Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['uploadSpeed'])) +
-    '/s';
-  sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
+    sb.Panels.Items[0].Text := '↓ ' +
+      Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['downloadSpeed'])) + '/s';
+    sb.Panels.Items[1].Text := '↑ ' +
+      Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['uploadSpeed'])) + '/s';
+    sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
+  except
+    sb.Panels.Items[0].Text := '↓ Failed';
+    sb.Panels.Items[1].Text := '↑ Failed';
+    sb.Panels.Items[2].Text := 'Error';
+  end;
+
 
   Result.Free;
 end;
 
-function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject; DownloadStatus: string): TSingleDownloadTaskItem;
+function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject;
+  DownloadStatus: string): TSingleDownloadTaskItem;
 var
-  lengthTotal, lengthCompleted: Int64;
+  lengthTotal, lengthCompleted: int64;
   tmpJSONData: TJSONData;
 begin
-      lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
-      lengthCompleted := StrToInt64(SingleJSONObject.Strings['completedLength']);
-      Result[0] := SingleJSONObject.Strings['gid'];
+  lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
+  lengthCompleted := StrToInt64(SingleJSONObject.Strings['completedLength']);
+  Result[0] := SingleJSONObject.Strings['gid'];
 
-      tmpJSONData:=nil;
-      tmpJSONData := SingleJSONObject.Find('bittorrent');
-      if Assigned(tmpJSONData) then
-      begin
-        Result[1] :=
-          (tmpJSONData as TJSONObject).Objects['info'].Strings['name'];
-      end else begin
-        tmpJSONData := SingleJSONObject.Find('files');
-        Result[8] := (tmpJSONData as TJSONArray).Objects[0].Arrays['uris'].Objects[0].Strings['uri'];
-        Result[1] := ExtractFileName((tmpJSONData as TJSONArray).Objects[0].Strings['path']);
-      end;
-      tmpJSONData:=nil;
+  tmpJSONData := nil;
+  tmpJSONData := SingleJSONObject.Find('bittorrent');
+  if Assigned(tmpJSONData) then
+  begin
+    Result[1] :=
+      (tmpJSONData as TJSONObject).Objects['info'].Strings['name'];
+  end
+  else
+  begin
+    tmpJSONData := SingleJSONObject.Find('files');
+    Result[8] := (tmpJSONData as TJSONArray).Objects[0].Arrays[
+      'uris'].Objects[0].Strings['uri'];
+    Result[1] := ExtractFileName(
+      (tmpJSONData as TJSONArray).Objects[0].Strings['path']);
+  end;
+  tmpJSONData := nil;
 
 
 
-      Result[2] :=
-        FileSizeToHumanReadableString(SingleJSONObject.Int64s['completedLength']);
-      Result[3] :=
-        FileSizeToHumanReadableString(SingleJSONObject.Int64s['totalLength']);
-      if lengthTotal = 0 then
-        Result[4] := ('N/A')
-      else
-        Result[4] :=
-          (Format('%.2f', [lengthCompleted / lengthTotal * 100]))+'%';
-      Result[5] :=
-        FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
-      Result[6] :=
-        FileSizeToHumanReadableString(SingleJSONObject.Integers['downloadSpeed'])+'/s';
-      Result[7] := (DownloadStatus);
+  Result[2] :=
+    FileSizeToHumanReadableString(SingleJSONObject.Int64s['completedLength']);
+  Result[3] :=
+    FileSizeToHumanReadableString(SingleJSONObject.Int64s['totalLength']);
+  if lengthTotal = 0 then
+    Result[4] := ('N/A')
+  else
+    Result[4] :=
+      (Format('%.2f', [lengthCompleted / lengthTotal * 100])) + '%';
+  Result[5] :=
+    FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
+  Result[6] :=
+    FileSizeToHumanReadableString(SingleJSONObject.Integers['downloadSpeed']) + '/s';
+  Result[7] := (DownloadStatus);
 
 end;
 
@@ -292,7 +305,8 @@ begin
   if ActiveTaskStatusList.Count > 0 then for i := 0 to ActiveTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := ActiveTaskStatusList.Objects[i];
-      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
+      VirtualListView[nextProcessArrayIndex] :=
+        DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
 
     end;
@@ -302,7 +316,8 @@ begin
     for i := 0 to WaitingTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := WaitingTaskStatusList.Objects[i];
-      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadWaiting);
+      VirtualListView[nextProcessArrayIndex] :=
+        DownloadTaskTOVirtualItem(SingleJSONObject, DownloadWaiting);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
@@ -311,7 +326,8 @@ begin
     for i := 0 to StoppedTaskStatusList.Count - 1 do
     begin
       SingleJSONObject := StoppedTaskStatusList.Objects[i];
-      VirtualListView[nextProcessArrayIndex]:=DownloadTaskTOVirtualItem(SingleJSONObject, DownloadStopped);
+      VirtualListView[nextProcessArrayIndex] :=
+        DownloadTaskTOVirtualItem(SingleJSONObject, DownloadStopped);
       nextProcessArrayIndex := nextProcessArrayIndex + 1;
     end;
 
