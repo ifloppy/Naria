@@ -102,7 +102,7 @@ end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
-
+  client.Host:='http://127.0.0.1:'+GlobalConfig.ReadString('RPC', 'port', '6800')+'/jsonrpc';
 end;
 
 procedure TFormMain.ListView1ContextPopup(Sender: TObject; MousePos: TPoint;
@@ -220,7 +220,7 @@ var
   tmpJSONData: TJSONData;
 begin
       lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
-      lengthCompleted := StrToInt(SingleJSONObject.Strings['completedLength']);
+      lengthCompleted := StrToInt64(SingleJSONObject.Strings['completedLength']);
       Result[0] := SingleJSONObject.Strings['gid'];
 
       tmpJSONData:=nil;

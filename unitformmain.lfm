@@ -50,8 +50,8 @@ object FormMain: TFormMain
   end
   object sb: TStatusBar
     Left = 0
-    Height = 22
-    Top = 325
+    Height = 23
+    Top = 324
     Width = 616
     Panels = <    
       item
@@ -136,7 +136,6 @@ object FormMain: TFormMain
     OnChange = ckbRefreshTaskListChange
   end
   object client: TCeosClient
-    Host = 'http://127.0.0.1:6800/jsonrpc'
     Left = 24
     Top = 48
   end
