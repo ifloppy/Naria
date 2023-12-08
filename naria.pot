@@ -248,6 +248,10 @@ msgstr ""
 msgid "Please input your tracker source URL"
 msgstr ""
 
+#: unitresourcestring.anotherinstance
+msgid "You have already run another instance of Naria"
+msgstr ""
+
 #: unitresourcestring.caption1
 msgid "Some text"
 msgstr ""

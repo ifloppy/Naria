@@ -52,12 +52,12 @@
               <TrashVariables Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
           </Linking>
-          <Other>
-            <ConfigFile>
-              <WriteConfigFilePath Value=""/>
-            </ConfigFile>
-          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release_Windows_x86_64">
@@ -92,11 +92,6 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <ConfigFile>
-              <WriteConfigFilePath Value=""/>
-            </ConfigFile>
-          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release_Linux_x86_64">
@@ -129,11 +124,6 @@
             </Debugging>
             <LinkSmart Value="True"/>
           </Linking>
-          <Other>
-            <ConfigFile>
-              <WriteConfigFilePath Value=""/>
-            </ConfigFile>
-          </Other>
         </CompilerOptions>
       </Item>
       <SharedMatrixOptions Count="1">
@@ -211,11 +201,6 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
-    <Other>
-      <ConfigFile>
-        <WriteConfigFilePath Value=""/>
-      </ConfigFile>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions>
