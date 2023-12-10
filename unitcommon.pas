@@ -106,7 +106,7 @@ begin
   Result := ProcessInstance.Running;
 end;
 
-function FileSizeToHumanReadableString(FileSize: int64): string;
+function FileSizeToHumanReadableString(FileSize: int64): string; inline;
 var
   Size: double;
   SizeUnit: string;

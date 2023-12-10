@@ -212,6 +212,8 @@ begin
     sb.Panels.Items[1].Text := '↑ ' +
       Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['uploadSpeed'])) + '/s';
     sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
+
+    Result.Free;
   except
     sb.Panels.Items[0].Text := '↓ Failed';
     sb.Panels.Items[1].Text := '↑ Failed';
@@ -219,7 +221,7 @@ begin
   end;
 
 
-  Result.Free;
+
 end;
 
 function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject;
@@ -263,7 +265,7 @@ begin
   Result[5] :=
     FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
   Result[6] :=
-    FileSizeToHumanReadableString(SingleJSONObject.Integers['downloadSpeed']) + '/s';
+    FileSizeToHumanReadableString(SingleJSONObject.Int64s['downloadSpeed']) + '/s';
   Result[7] := (DownloadStatus);
 
 end;
@@ -277,19 +279,34 @@ var
   respJSON: TJSONObject;
   VirtualListView: array of TSingleDownloadTaskItem;
 begin
-  r := client.Call('aria2.tellActive', [AriaParamToken], 1);
+  try
+    r := client.Call('aria2.tellActive', [AriaParamToken], 1);
+  except
+    exit;
+  end;
+
   ActiveTaskStatusList.Free;
   respJSON := GetJSON(r) as TJSONObject;
   ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
 
-  r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
+  try
+    r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 10], 1);
+  except
+    exit;
+  end;
+
   WaitingTaskStatusList.Free;
   respJSON := GetJSON(r) as TJSONObject;
   WaitingTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
   respJSON.Free;
 
-  r := client.Call('aria2.tellStopped', [AriaParamToken, 0, 10], 1);
+  try
+    r := client.Call('aria2.tellStopped', [AriaParamToken, 0, 10], 1);
+  except
+    exit;
+  end;
+
   StoppedTaskStatusList.Free;
   respJSON := GetJSON(r) as TJSONObject;
   StoppedTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;

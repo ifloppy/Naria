@@ -146,6 +146,7 @@ object FormMain: TFormMain
     Top = 104
   end
   object TimerRefreshTaskList: TTimer
+    Interval = 2000
     OnTimer = TimerRefreshTaskListTimer
     Left = 24
     Top = 160
