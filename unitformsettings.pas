@@ -27,10 +27,15 @@ type
     edtDownloadUA: TLabeledEdit;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    edtProxy: TLabeledEdit;
     memoTracker: TMemo;
     PageControl1: TPageControl;
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     speRPCPort: TSpinEdit;
+    speMaxTasks: TSpinEdit;
+    speMaxConn: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -76,6 +81,10 @@ begin
   GlobalConfig.WriteString('RPC', 'Secret', edtRPCPassword.Text);
   GlobalConfig.WriteString('Download', 'Path', edtDownloadPath.Text);
   GlobalConfig.WriteString('DOwnload', 'User-Agent', edtDownloadUA.Text);
+
+  GlobalConfig.WriteInt64('Download', 'MaxTasks', speMaxTasks.Value);
+  GlobalConfig.WriteInt64('Download', 'MaxConnections', speMaxConn.Value);
+  GlobalConfig.WriteString('Download', 'Proxy', edtProxy.Text);
 
   if memoTracker.Lines.Text <> '' then
   begin
@@ -173,6 +182,9 @@ begin
   edtDownloadUA.Text := GlobalConfig.ReadString('Download', 'User-Agent', '');
   memoTracker.Lines.Text := StringReplace(GlobalConfig.ReadString('BT', 'Tracker', ''),
     ',', LineEnding, [rfReplaceAll]);
+  speMaxTasks.Value:=GlobalConfig.ReadInt64('Download', 'MaxTasks', 64);
+  speMaxConn.Value:=GlobalConfig.ReadInt64('Download', 'MaxConnections', 64);
+  edtProxy.Text:=GlobalConfig.ReadString('Download', 'Proxy', '');
   {edtUpdateTrackersURL.Text :=
     GlobalConfig.ReadString('BT', 'TrackerSyncServer',
     'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt');}

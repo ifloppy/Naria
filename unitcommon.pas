@@ -30,7 +30,7 @@ type
     destructor Destroy; override;
   end;
 
-function FileSizeToHumanReadableString(FileSize: int64): string;
+function FileSizeToHumanReadableString(InputFileSize: int64): string;
 function processExists(exeFileName: string): Boolean;
 
 var
@@ -85,8 +85,8 @@ begin
   ProcessInstance.Parameters.Add('--input-file=' + GetCurrentDir + '/download.session');
   ProcessInstance.Parameters.Add('--save-session=' + GetCurrentDir + '/download.session');
   ProcessInstance.Parameters.Add('--rpc-allow-origin-all=true');
-  ProcessInstance.Parameters.Add('--max-concurrent-downloads=64');
-  ProcessInstance.Parameters.Add('--max-connection-per-server=64');
+  ProcessInstance.Parameters.Add('--max-concurrent-downloads='+GlobalConfig.ReadString('Download', 'MaxTasks', '64'));
+  ProcessInstance.Parameters.Add('--max-connection-per-server=64'+GlobalConfig.ReadString('Download', 'MaxConnections', '64'));
   ProcessInstance.Parameters.Add('--min-split-size=1M');
   ProcessInstance.Parameters.Add('--split=64');
   ProcessInstance.Parameters.Add('--check-certificate=false');
@@ -97,6 +97,10 @@ begin
     ProcessInstance.Parameters.Add('--bt-tracker=' + tmp);
   end;
 
+  tmp:=GlobalConfig.ReadString('Download', 'Proxy', '');
+  if tmp <> '' then begin
+    ProcessInstance.Parameters.Add('--all-proxy=' + tmp);
+  end;
 
   AriaParamToken := 'token:' + GlobalConfig.ReadString('RPC', 'Secret', '');
 end;
@@ -106,11 +110,13 @@ begin
   Result := ProcessInstance.Running;
 end;
 
-function FileSizeToHumanReadableString(FileSize: int64): string; inline;
+function FileSizeToHumanReadableString(InputFileSize: int64): string;
 var
   Size: double;
-  SizeUnit: string;
+  SizeUnit, output: string;
+  FileSize: int64;
 begin
+  FileSize:=InputFileSize;
   if FileSize >= GB then // 如果文件大小大于等于1GB
   begin
     Size := FileSize / GB; // 用GB为单位
@@ -126,7 +132,8 @@ begin
     Size := FileSize; // 用字节为单位
     SizeUnit := 'bytes';
   end;
-  Result := Format('%.2f %s', [Size, SizeUnit]); // 格式化输出，保留整数部分
+  output:= Format('%.2f %s', [Size, SizeUnit]);// 格式化输出，保留整数部分
+  exit(output);
 end;
 
 {
