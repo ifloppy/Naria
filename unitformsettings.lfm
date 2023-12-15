@@ -35,9 +35,9 @@ object FormSettings: TFormSettings
     Height = 283
     Top = 0
     Width = 473
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'PRC'
@@ -148,6 +148,47 @@ object FormSettings: TFormSettings
         TabOrder = 3
         OnChange = cbxUAPresetsChange
       end
+      object speMaxTasks: TSpinEdit
+        Left = 8
+        Height = 25
+        Top = 152
+        Width = 162
+        MaxValue = 64
+        TabOrder = 4
+      end
+      object Label5: TLabel
+        Left = 8
+        Height = 17
+        Top = 136
+        Width = 62
+        Caption = 'Max Tasks'
+      end
+      object Label6: TLabel
+        Left = 184
+        Height = 17
+        Top = 136
+        Width = 100
+        Caption = 'Max Connections'
+      end
+      object speMaxConn: TSpinEdit
+        Left = 184
+        Height = 25
+        Top = 152
+        Width = 162
+        MaxValue = 64
+        TabOrder = 5
+      end
+      object edtProxy: TLabeledEdit
+        Left = 8
+        Height = 25
+        Top = 200
+        Width = 448
+        EditLabel.Height = 17
+        EditLabel.Width = 448
+        EditLabel.Caption = 'Proxy'
+        TabOrder = 6
+        TextHint = '[http://][USER:PASSWORD@]HOST[:PORT]'
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Trackers'
@@ -194,6 +235,6 @@ object FormSettings: TFormSettings
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     Left = 32
-    Top = 176
+    Top = 240
   end
 end
