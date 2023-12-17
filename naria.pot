@@ -25,6 +25,21 @@ msgstr ""
 msgid "Refresh download task list"
 msgstr ""
 
+#: tformmain.lblnumdownloading.caption
+msgctxt "tformmain.lblnumdownloading.caption"
+msgid "Loading"
+msgstr ""
+
+#: tformmain.lblnumstopped.caption
+msgctxt "tformmain.lblnumstopped.caption"
+msgid "Loading"
+msgstr ""
+
+#: tformmain.lblnumwaiting.caption
+msgctxt "tformmain.lblnumwaiting.caption"
+msgid "Loading"
+msgstr ""
+
 #: tformmain.listview1.columns[0].caption
 msgid "gid"
 msgstr ""

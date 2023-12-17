@@ -13,7 +13,7 @@ object FormMain: TFormMain
     Left = 8
     Height = 25
     Top = 294
-    Width = 75
+    Width = 99
     Anchors = [akLeft, akBottom]
     Caption = 'Settings'
     TabOrder = 0
@@ -43,7 +43,7 @@ object FormMain: TFormMain
     Left = 8
     Height = 25
     Top = 8
-    Width = 75
+    Width = 99
     Caption = 'New Task'
     TabOrder = 3
     OnClick = btnNewTaskClick
@@ -69,10 +69,10 @@ object FormMain: TFormMain
     SimplePanel = False
   end
   object ListView1: TListView
-    Left = 88
+    Left = 112
     Height = 276
     Top = 40
-    Width = 522
+    Width = 498
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
@@ -125,7 +125,7 @@ object FormMain: TFormMain
     OnContextPopup = ListView1ContextPopup
   end
   object ckbRefreshTaskList: TCheckBox
-    Left = 88
+    Left = 112
     Height = 21
     Top = 12
     Width = 172
@@ -135,27 +135,76 @@ object FormMain: TFormMain
     TabOrder = 6
     OnChange = ckbRefreshTaskListChange
   end
+  object cbxListType: TComboBox
+    Left = 7
+    Height = 23
+    Top = 160
+    Width = 100
+    ItemHeight = 17
+    ReadOnly = True
+    Style = csOwnerDrawFixed
+    TabOrder = 7
+  end
+  object lblNumDownloading: TLabel
+    Left = 7
+    Height = 17
+    Top = 56
+    Width = 47
+    Caption = 'Loading'
+  end
+  object lblTextDownloading: TLabel
+    Left = 7
+    Height = 1
+    Top = 40
+    Width = 1
+  end
+  object lblNumWaiting: TLabel
+    Left = 7
+    Height = 17
+    Top = 96
+    Width = 47
+    Caption = 'Loading'
+  end
+  object lblTextWaiting: TLabel
+    Left = 7
+    Height = 1
+    Top = 80
+    Width = 1
+  end
+  object lblNumStopped: TLabel
+    Left = 7
+    Height = 17
+    Top = 136
+    Width = 47
+    Caption = 'Loading'
+  end
+  object lblTextStopped: TLabel
+    Left = 7
+    Height = 1
+    Top = 120
+    Width = 1
+  end
   object client: TCeosClient
-    Left = 24
-    Top = 48
+    Left = 112
+    Top = 40
   end
   object TimerRealtimeStats: TTimer
     Interval = 2000
     OnTimer = TimerRealtimeStatsTimer
-    Left = 24
-    Top = 104
+    Left = 112
+    Top = 96
   end
   object TimerRefreshTaskList: TTimer
-    Interval = 2000
+    Interval = 2500
     OnTimer = TimerRefreshTaskListTimer
-    Left = 24
-    Top = 160
+    Left = 112
+    Top = 152
   end
   object PopupMenuDownloadTask: TPopupMenu
     OnPopup = PopupMenuDownloadTaskPopup
     OnClose = PopupMenuDownloadTaskClose
-    Left = 24
-    Top = 224
+    Left = 112
+    Top = 216
     object mniTaskResume: TMenuItem
       Caption = 'Resume'
       Enabled = False

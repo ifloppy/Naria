@@ -16,6 +16,7 @@ const
 
   GB = 1073741824; // 1024 * 1024 * 1024
   MB = 1048576; // 1024 * 1024
+  KB = 1024;
 
 type
   TAriaProcessManager = class
@@ -30,7 +31,7 @@ type
     destructor Destroy; override;
   end;
 
-function FileSizeToHumanReadableString(InputFileSize: int64): string;
+function FileSizeToHumanReadableString(FileSize: int64): string;
 function processExists(exeFileName: string): Boolean;
 
 var
@@ -110,13 +111,11 @@ begin
   Result := ProcessInstance.Running;
 end;
 
-function FileSizeToHumanReadableString(InputFileSize: int64): string;
+function FileSizeToHumanReadableString(FileSize: int64): string;
 var
   Size: double;
-  SizeUnit, output: string;
-  FileSize: int64;
+  SizeUnit: string;
 begin
-  FileSize:=InputFileSize;
   if FileSize >= GB then // 如果文件大小大于等于1GB
   begin
     Size := FileSize / GB; // 用GB为单位
@@ -127,13 +126,16 @@ begin
     Size := FileSize / MB; // 用MB为单位
     SizeUnit := 'MB';
   end
+  else if FileSize >= KB then begin
+    Size := FileSize / KB; // 用KB为单位
+    SizeUnit := 'KB';
+  end
   else // 如果文件大小小于1MB
   begin
     Size := FileSize; // 用字节为单位
     SizeUnit := 'bytes';
   end;
-  output:= Format('%.2f %s', [Size, SizeUnit]);// 格式化输出，保留整数部分
-  exit(output);
+  Result:= Format('%.2f %s', [Size, SizeUnit]);// 格式化输出，保留整数部分
 end;
 
 {

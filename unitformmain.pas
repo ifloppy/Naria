@@ -22,6 +22,13 @@ type
     btnNewTask: TButton;
     ckbRefreshTaskList: TCheckBox;
     client: TCeosClient;
+    cbxListType: TComboBox;
+    lblNumWaiting: TLabel;
+    lblNumStopped: TLabel;
+    lblTextDownloading: TLabel;
+    lblNumDownloading: TLabel;
+    lblTextWaiting: TLabel;
+    lblTextStopped: TLabel;
     ListView1: TListView;
     mniTaskResume: TMenuItem;
     mniTaskPause: TMenuItem;
@@ -54,6 +61,8 @@ type
     ActiveTaskStatusList: TJSONArray;
     WaitingTaskStatusList: TJSONArray;
     StoppedTaskStatusList: TJSONArray;
+
+    NumWaiting, NumStopped, NumDownloading, SpeedDownload, SpeedUpload: int64;
   end;
 
 var
@@ -104,6 +113,14 @@ procedure TFormMain.FormCreate(Sender: TObject);
 begin
   client.Host := 'http://127.0.0.1:' + GlobalConfig.ReadString('RPC',
     'port', '6800') + '/jsonrpc';
+  cbxListType.Items.Append(DownloadActive);
+  cbxListType.Items.Append(DownloadWaiting);
+  cbxListType.Items.Append(DownloadStopped);
+  cbxListType.ItemIndex := 0;
+
+  lblTextDownloading.Caption := DownloadActive;
+  lblTextWaiting.Caption := DownloadWaiting;
+  lblTextStopped.Caption := DownloadStopped;
 end;
 
 procedure TFormMain.ListView1ContextPopup(Sender: TObject; MousePos: TPoint;
@@ -207,11 +224,21 @@ begin
     Result := resp.Objects['result'].Clone as TJSONObject;
     resp.Free;
 
-    sb.Panels.Items[0].Text := '↓ ' +
-      Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['downloadSpeed'])) + '/s';
-    sb.Panels.Items[1].Text := '↑ ' +
-      Utf8ToAnsi(FileSizeToHumanReadableString(Result.Int64s['uploadSpeed'])) + '/s';
-    sb.Panels.Items[2].Text := WaitingTaskNum + Result.Strings['numWaiting'];
+    SpeedDownload := Result.Int64s['downloadSpeed'];
+    SpeedUpload := Result.Int64s['uploadSpeed'];
+    NumDownloading := Result.Int64s['numActive'];
+    NumWaiting := Result.Int64s['numWaiting'];
+    NumStopped := Result.Int64s['numStoppedTotal'];
+
+    sb.Panels.Items[0].Text :=
+      '↓ ' + Utf8ToAnsi(FileSizeToHumanReadableString(SpeedDownload)) + '/s';
+    sb.Panels.Items[1].Text :=
+      '↑ ' + Utf8ToAnsi(FileSizeToHumanReadableString(SpeedUpload)) + '/s';
+    sb.Panels.Items[2].Text := 'OK';
+
+    lblNumDownloading.Caption := IntToStr(NumDownloading);
+    lblNumWaiting.Caption := IntToStr(NumWaiting);
+    lblNumStopped.Caption := IntToStr(NumStopped);
 
     Result.Free;
   except
@@ -220,8 +247,6 @@ begin
     sb.Panels.Items[2].Text := 'Error';
   end;
 
-
-
 end;
 
 function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject;
@@ -229,6 +254,7 @@ function DownloadTaskTOVirtualItem(SingleJSONObject: TJSONObject;
 var
   lengthTotal, lengthCompleted: int64;
   tmpJSONData: TJSONData;
+  StrCompleted, StrTotalLength, StrUploadLength, StrDownloadSpeed: string;
 begin
   lengthTotal := StrToInt64(SingleJSONObject.Strings['totalLength']);
   lengthCompleted := StrToInt64(SingleJSONObject.Strings['completedLength']);
@@ -251,21 +277,20 @@ begin
   end;
   tmpJSONData := nil;
 
+  StrCompleted:=FileSizeToHumanReadableString(lengthCompleted);
+  StrTotalLength:=FileSizeToHumanReadableString(lengthTotal);
+  StrUploadLength:=FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
+  StrDownloadSpeed:=FileSizeToHumanReadableString(SingleJSONObject.Int64s['downloadSpeed']) + '/s';
 
-
-  Result[2] :=
-    FileSizeToHumanReadableString(SingleJSONObject.Int64s['completedLength']);
-  Result[3] :=
-    FileSizeToHumanReadableString(SingleJSONObject.Int64s['totalLength']);
+  Result[2] := StrCompleted;
+  Result[3] := StrTotalLength;
   if lengthTotal = 0 then
     Result[4] := ('N/A')
   else
     Result[4] :=
       (Format('%.2f', [lengthCompleted / lengthTotal * 100])) + '%';
-  Result[5] :=
-    FileSizeToHumanReadableString(SingleJSONObject.Int64s['uploadLength']);
-  Result[6] :=
-    FileSizeToHumanReadableString(SingleJSONObject.Int64s['downloadSpeed']) + '/s';
+  Result[5] := StrUploadLength;
+  Result[6] := StrDownloadSpeed;
   Result[7] := (DownloadStatus);
 
 end;
@@ -279,6 +304,7 @@ var
   respJSON: TJSONObject;
   VirtualListView: array of TSingleDownloadTaskItem;
 begin
+  {
   try
     r := client.Call('aria2.tellActive', [AriaParamToken], 1);
   except
@@ -400,7 +426,149 @@ begin
       ListView1.Items.Delete(ListView1.Items.Count - 1);
     end;
   end;
+  }
 
+
+
+  case cbxListType.ItemIndex of
+    //Downloading
+    0: begin
+      try
+        r := client.Call('aria2.tellActive', [AriaParamToken], 1);
+      except
+        exit;
+      end;
+
+      ActiveTaskStatusList.Free;
+      respJSON := GetJSON(r) as TJSONObject;
+      ActiveTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
+      respJSON.Free;
+
+
+      totalTaskNum := ActiveTaskStatusList.Count;
+      SetLength(VirtualListView, totalTaskNum);
+      nextProcessArrayIndex := 0;
+
+
+      if ActiveTaskStatusList.Count > 0 then
+        for i := 0 to ActiveTaskStatusList.Count - 1 do
+        begin
+          SingleJSONObject := ActiveTaskStatusList.Objects[i];
+          VirtualListView[nextProcessArrayIndex] :=
+            DownloadTaskTOVirtualItem(SingleJSONObject, DownloadActive);
+          nextProcessArrayIndex := nextProcessArrayIndex + 1;
+
+        end;
+    end;
+
+    //Waiting
+    1: begin
+      try
+        r := client.Call('aria2.tellWaiting', [AriaParamToken, 0, 64], 1);
+      except
+        exit;
+      end;
+
+      WaitingTaskStatusList.Free;
+      respJSON := GetJSON(r) as TJSONObject;
+      WaitingTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
+      respJSON.Free;
+
+
+      totalTaskNum := WaitingTaskStatusList.Count;
+      SetLength(VirtualListView, totalTaskNum);
+      nextProcessArrayIndex := 0;
+
+
+      if WaitingTaskStatusList.Count > 0 then
+        for i := 0 to WaitingTaskStatusList.Count - 1 do
+        begin
+          SingleJSONObject := WaitingTaskStatusList.Objects[i];
+          VirtualListView[nextProcessArrayIndex] :=
+            DownloadTaskTOVirtualItem(SingleJSONObject, DownloadWaiting);
+          nextProcessArrayIndex := nextProcessArrayIndex + 1;
+        end;
+    end;
+
+    //Stopped
+    2: begin
+      try
+        r := client.Call('aria2.tellStopped', [AriaParamToken, 0, 64], 1);
+      except
+        exit;
+      end;
+
+      StoppedTaskStatusList.Free;
+      respJSON := GetJSON(r) as TJSONObject;
+      StoppedTaskStatusList := respJSON.Arrays['result'].Clone as TJSONArray;
+      respJSON.Free;
+
+      totalTaskNum := StoppedTaskStatusList.Count;
+      SetLength(VirtualListView, totalTaskNum);
+      nextProcessArrayIndex := 0;
+
+
+      if StoppedTaskStatusList.Count > 0 then
+        for i := 0 to StoppedTaskStatusList.Count - 1 do
+        begin
+          SingleJSONObject := StoppedTaskStatusList.Objects[i];
+          VirtualListView[nextProcessArrayIndex] :=
+            DownloadTaskTOVirtualItem(SingleJSONObject, DownloadStopped);
+          nextProcessArrayIndex := nextProcessArrayIndex + 1;
+        end;
+    end;
+  end;
+
+  //Check if listview items enough
+  //i: total for times
+  i := totalTaskNum - ListView1.Items.Count;
+  if i > 0 then
+  begin
+    for ii := 0 to Pred(i) do
+    begin
+      with ListView1.Items.Add.SubItems do
+      begin
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+        Add(EmptyStr);
+      end;
+    end;
+  end;
+
+  //Compare and update items
+  //Per line
+  //i: line id, ii: column id
+  if (ListView1.Items.Count > 0) and (Length(VirtualListView) > 0) then
+    for i := 0 to pred(totalTaskNum) do
+    begin
+      SingleListItemObject := ListView1.Items[i];
+      //per column of this line
+      SingleListItemObject.Caption := VirtualListView[i][0];
+      for ii := 1 to pred(Length(VirtualListView[i])) do
+      begin
+
+        if SingleListItemObject.SubItems[pred(ii)] <> VirtualListView[i][ii] then
+          SingleListItemObject.SubItems[pred(ii)] := VirtualListView[i][ii];
+
+      end;
+    end;
+
+
+  //Delete useless items
+  //i: total for times
+  i := ListView1.Items.Count - totalTaskNum;
+  if i > 0 then
+  begin
+    for ii := 0 to Pred(i) do
+    begin
+      ListView1.Items.Delete(ListView1.Items.Count - 1);
+    end;
+  end;
 end;
 
 end.
