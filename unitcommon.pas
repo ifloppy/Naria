@@ -168,6 +168,15 @@ begin
   end;
   CloseHandle(FSnapshotHandle);
 end;
+{$Else}
+function processExists(exeFileName: string): Boolean;
+var
+  output: string;
+begin
+  if (not RunCommand('ps -C ' + exeFileName, output)) then exit(False);
+  if Pos(output, exeFileName) = 0 then exit(false);
+  exit(true);
+end;
 {$EndIf}
 
 end.

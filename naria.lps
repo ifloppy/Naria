@@ -9,7 +9,7 @@
       <Unit>
         <Filename Value="naria.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="20"/>
         <CursorPos X="7" Y="33"/>
         <UsageCount Value="95"/>
@@ -21,7 +21,6 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="222"/>
         <CursorPos X="54" Y="242"/>
         <UsageCount Value="95"/>
@@ -44,19 +43,19 @@
       <Unit>
         <Filename Value="unitcommon.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="116"/>
-        <CursorPos X="10" Y="129"/>
+        <TopLine Value="147"/>
+        <CursorPos X="24" Y="171"/>
         <UsageCount Value="95"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitresourcestring.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="5"/>
         <UsageCount Value="95"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unitformnewtask.pas"/>
@@ -174,9 +173,9 @@
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-process\src\processbody.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="135"/>
-        <CursorPos X="14" Y="154"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="166"/>
+        <CursorPos X="10" Y="185"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-process\src\process.pp"/>
@@ -251,16 +250,15 @@
         <CursorPos Y="99"/>
         <UsageCount Value="7"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1335"/>
+        <CursorPos X="11" Y="1353"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="96" Column="3" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="unitformmain.pas"/>
-        <Caret Line="436" Column="32" TopLine="404"/>
-      </Position>
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="468" Column="69" TopLine="461"/>
@@ -364,6 +362,22 @@
       <Position>
         <Filename Value="unitformmain.pas"/>
         <Caret Line="242" Column="54" TopLine="222"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="35" Column="20" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="176" Column="9" TopLine="145"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="177" Column="30" TopLine="145"/>
+      </Position>
+      <Position>
+        <Filename Value="unitcommon.pas"/>
+        <Caret Line="178" Column="12" TopLine="13"/>
       </Position>
     </JumpHistory>
     <RunParams>
