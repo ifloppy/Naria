@@ -35,6 +35,21 @@ msgstr ""
 msgid "Refresh download task list"
 msgstr "刷新下载任务列表"
 
+#: tformmain.lblnumdownloading.caption
+msgctxt "tformmain.lblnumdownloading.caption"
+msgid "Loading"
+msgstr "加载中"
+
+#: tformmain.lblnumstopped.caption
+msgctxt "tformmain.lblnumstopped.caption"
+msgid "Loading"
+msgstr "加载中"
+
+#: tformmain.lblnumwaiting.caption
+msgctxt "tformmain.lblnumwaiting.caption"
+msgid "Loading"
+msgstr "加载中"
+
 #: tformmain.listview1.columns[0].caption
 msgid "gid"
 msgstr ""
@@ -183,6 +198,14 @@ msgstr "默认User-Agent"
 msgid "\"aria2/$VERSION\" if there is empty"
 msgstr "若为空则使用\"aria2/$VERSION\""
 
+#: tformsettings.edtproxy.editlabel.caption
+msgid "Proxy"
+msgstr "代理"
+
+#: tformsettings.edtproxy.texthint
+msgid "[http://][USER:PASSWORD@]HOST[:PORT]"
+msgstr ""
+
 #: tformsettings.edtrpcpassword.texthint
 msgid "For secure your aira2, we suggest you use a secret"
 msgstr "为了保障你的Aria2的安全，我们建议你使用一个密钥"
@@ -202,6 +225,14 @@ msgstr "预设的UA"
 #: tformsettings.label4.caption
 msgid "BT Trackers(One URL per line)"
 msgstr "BT Tracker（一行一个）"
+
+#: tformsettings.label5.caption
+msgid "Max Tasks"
+msgstr "最大任务"
+
+#: tformsettings.label6.caption
+msgid "Max Connections"
+msgstr "最大连接数"
 
 #: tformsettings.tabsheet1.caption
 msgid "PRC"
@@ -257,6 +288,10 @@ msgstr "添加源"
 #: unitresourcestring.addtrackersourceinputprompt
 msgid "Please input your tracker source URL"
 msgstr "清输入你的Tracker源的URL"
+
+#: unitresourcestring.anotherinstance
+msgid "You have already run another instance of Naria"
+msgstr "你已经运行了另一个Naria实例"
 
 #: unitresourcestring.caption1
 msgid "Some text"

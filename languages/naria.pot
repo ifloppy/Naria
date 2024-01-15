@@ -25,6 +25,21 @@ msgstr ""
 msgid "Refresh download task list"
 msgstr ""
 
+#: tformmain.lblnumdownloading.caption
+msgctxt "tformmain.lblnumdownloading.caption"
+msgid "Loading"
+msgstr ""
+
+#: tformmain.lblnumstopped.caption
+msgctxt "tformmain.lblnumstopped.caption"
+msgid "Loading"
+msgstr ""
+
+#: tformmain.lblnumwaiting.caption
+msgctxt "tformmain.lblnumwaiting.caption"
+msgid "Loading"
+msgstr ""
+
 #: tformmain.listview1.columns[0].caption
 msgid "gid"
 msgstr ""
@@ -173,6 +188,14 @@ msgstr ""
 msgid "\"aria2/$VERSION\" if there is empty"
 msgstr ""
 
+#: tformsettings.edtproxy.editlabel.caption
+msgid "Proxy"
+msgstr ""
+
+#: tformsettings.edtproxy.texthint
+msgid "[http://][USER:PASSWORD@]HOST[:PORT]"
+msgstr ""
+
 #: tformsettings.edtrpcpassword.texthint
 msgid "For secure your aira2, we suggest you use a secret"
 msgstr ""
@@ -191,6 +214,14 @@ msgstr ""
 
 #: tformsettings.label4.caption
 msgid "BT Trackers(One URL per line)"
+msgstr ""
+
+#: tformsettings.label5.caption
+msgid "Max Tasks"
+msgstr ""
+
+#: tformsettings.label6.caption
+msgid "Max Connections"
 msgstr ""
 
 #: tformsettings.tabsheet1.caption
@@ -246,6 +277,10 @@ msgstr ""
 
 #: unitresourcestring.addtrackersourceinputprompt
 msgid "Please input your tracker source URL"
+msgstr ""
+
+#: unitresourcestring.anotherinstance
+msgid "You have already run another instance of Naria"
 msgstr ""
 
 #: unitresourcestring.caption1
