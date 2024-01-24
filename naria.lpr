@@ -13,13 +13,20 @@ uses
   Forms, unitformmain, unitformsettings, unitcommon, IniFiles,
   unitresourcestring, ceosmw, unitformnewtask, opensslsockets, DefaultTranslator,
   LazFileUtils, unitformtrackersource, UniqueInstanceRaw, Dialogs
-  { you can add units after this }, ceosclient, process;
+  { you can add units after this }, ceosclient, process
+  {$IfDef WINDOWS}, uMetaDarkStyle, uDarkStyleParams, uDarkStyleSchemes{$EndIf};
 
 {$R *.res}
 var
   rpcClient: TCeosClient;
   S: String;
 begin
+  {$IfDef WINDOWS}
+  RequireDerivedFormResource:=True;
+  Application.Scaled:=True;
+  PreferredAppMode:=pamAllowDark;
+  uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
+  {$EndIf}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
